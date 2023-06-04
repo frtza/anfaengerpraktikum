@@ -1,0 +1,86 @@
+% Titel: Ziel des Versuchs
+% Theorie: Physikalische Grundlagen von Versuch/Messverfahren, Gleichungen ohne Herleitung knapp erklären
+\section{Theorie}
+\label{sec:theorie}
+
+Lock-In\hspace{0.1ex}-\hspace{-0.25ex}Verstärker finden Verwendung in der Messung stark
+verrauschter Signale, indem diese mit einer Referenzfrequenz $\omega_0$ moduliert
+werden. Aus dem Messsignal entsteht $U_{\! \text{sig}}$ als Nutzsignal, welches unter
+Anwendung eines Bandpassfilters von Rauschanteilen mit niedrigen ($\omega\ll\omega_0$)
+und hohen ($\omega\gg\omega_0$) Frequenzen bereinigt wird. Im nachgeschalteten Mischer
+wird $U_{\! \text{sig}}$ mit einer Referenzspannung $U_{\! \text{ref}}$ der Frequenz
+$\omega_0$ multipliziert, wobei durch Variation deren Phase eine Synchronisation
+($\phi = 0$) beider Signale erreicht wird. Zuletzt wird das Mischsignal
+$U_{\! \text{mix}} \! = U_{\! \text{sig}} \! \times U_{\! \text{ref}}$ über
+einen Tiefpass integriert. Durch Wahl einer ausreichend großen Zeitkonstante
+($\tau \gg 1/\omega_0$) kann diese Integration über mehrere Perioden der Modulationsfrequenz
+stattfinden. So werden asynchrone Rauschbeiträge weitestgehend herausgemittelt. Es ergibt sich
+mit $U_{\! \text{out}}$ eine Gleichspannung, deren Wert proportional zum Eingangssignal ist.
+Unter der Farbkodierung nach Abbildung \ref{fig:verlauf} lässt sich in Abbildung \ref{fig:lock-in}
+der schematische Aufbau eines Lock-In\hspace{0.1ex}-\hspace{-0.25ex}Verstärkers nachvollziehen.
+\par
+Die Bandbreite $\symup{\Delta}\nu$ des Restrauschens ist vom Integrierglied abhängig. Durch Wahl
+einer besonders großen Zeitkonstante $\tau = RC$ am Tiefpass, lässt sich
+$\symup{\Delta}\nu = 1/(\pi RC)$ beliebig klein kalibrieren.
+Dieses Vorgehen erlaubt das Erreichen von Gütefaktoren bis $Q = \num{100000}$. Ein einfacher Bandpass
+besitzt dagegen eine Güte von Q = \num{1000}.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics{build/graphic.pdf}
+	\caption{Exemplarische Signalverläufe am Lock-In\hspace{0.1ex}-\hspace{-0.25ex}Verstärker.}
+	\label{fig:verlauf}
+\end{figure}
+
+Anhand Abbildung \ref{fig:verlauf} lassen sich die mathematischen Hintergründe des Filtervorgangs
+darstellen. Eine typische Signalspannung der Form
+\begin{equation}
+	U_{\! \text{sig}} \hspace{-0.1ex} = U_0 \sin(\omega t)
+	\label{eqn:sig}
+\end{equation}
+wird hier durch ein Rechtecksignal gleicher Frequenz moduliert. Zu beachten ist dabei, dass die Amplitude dieser
+Referenzspannung $U_{\! \text{ref}}$ normiert ist. Als Näherung wird ihre Fourierreihe aus den ungeraden
+Harmonischen zur Grundfrequenz $\omega$ genutzt:
+\begin{align}
+	U_{\! \text{ref}} \hspace{0.1ex} &=
+	\pfrac{4}{\raisebox{0.8ex}{$\pi$}} \!
+	\left( \sin(\omega t) +
+	\pfrac{1}{\raisebox{0.8ex}{$3$}} \sin(3\omega t) +
+	\pfrac{1}{\raisebox{0.8ex}{$5$}} \sin(5\omega t) +
+	\pfrac{1}{\raisebox{0.8ex}{$7$}} \sin(7\omega t) + \ldots \right) \label{eqn:ref} \\
+	\intertext{Am Mischer folgt damit für das Produkt aus Signal und Referenz:}
+	U_{\! \text{mix}} &=
+	\pfrac{2}{\raisebox{0.8ex}{$\pi$}} \, U_0 \!
+	\left( 1 -
+	\pfrac{2}{\raisebox{0.8ex}{$3$}} \cos(2\omega t) -
+	\pfrac{2}{\raisebox{0.8ex}{$15$}} \cos(4\omega t) -
+	\pfrac{2}{\raisebox{0.8ex}{$35$}} \cos(6\omega t) - \ldots \right) \label{eqn:mix}
+\end{align}
+Nach diesem Schritt sind nur noch die geraden Oberwellen von $\omega$ enthalten, der Detektor funktioniert
+demnach als Gleichrichter. Der Tiefpassfilter wird anschließend so gewählt, dass alle höheren Schwingungen
+unterdrückt werden. Nun kann die Gleichspannung
+\begin{equation}
+	U_{\! \text{out}} \hspace{-0.1ex} = \pfrac{2}{\raisebox{0.8ex}{$\pi$}} \, U_0
+\end{equation}
+abgegriffen werden. Weisen $U_{\! \text{sig}}$ und $U_{\! \text{ref}}$ anders als in Abbildung
+\ref{fig:verlauf} eine \mbox{Phasendifferenz $\phi$} auf, so ergibt sich für die Ausgangsspannung stattdessen:
+\begin{equation}
+	U_{\! \text{out}} \hspace{-0.1ex} = \pfrac{2}{\raisebox{0.8ex}{$\pi$}} \, U_0 \cos(\phi)
+\end{equation}
+Entspricht die Referenzspannung einem nicht normierten Sinussignal,
+gilt eine allgemeine Proportionalität der folgenden Form:
+\begin{equation}
+	U_{\! \text{out}} \hspace{-0.1ex} \propto U_0 \cos(\phi)
+	\label{eqn:out}
+\end{equation}
+
+\vfill
+
+\section{Aufgabe}
+
+Ziel dieser Versuchsreihe ist es, die Funktion eines Lock-In\hspace{0.1ex}-\hspace{-0.25ex}Verstärkers
+zu untersuchen. Dazu werden zunächst die Phasenabhängkeiten der Gestalt des Mischsignals sowie des
+\mbox{Intensitätsverlaufs} der Ausgangsspannung betrachtet. Anschließend wird die aufgebaute Messapparatur
+zur Rauschunterdrückung in einer Photodetektorschaltung angewendet.
+
+\newpage

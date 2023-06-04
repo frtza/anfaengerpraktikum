@@ -1,0 +1,96 @@
+% Titel: Ziel des Versuchs
+% Theorie: Physikalische Grundlagen von Versuch/Messverfahren, Gleichungen ohne Herleitung knapp erklären
+\section{Zielsetzung}
+
+Im nachfolgenden Versuch sollen die Trägheitsmomente von verschiedenen Körpern unter Verwendung einer Drillachse
+bestimmt werden. Durch Vergleich mit den vorhergesagten Werten wird außerdem der Steinersche Satz verifiziert.
+Alle theoretischen Grundlagen sind der Versuchsanleitung \cite{träge} entnommen.
+
+\section{Theorie}
+\label{sec:theorie}
+
+% \subsection{Rotationsbewegungen}
+
+Allgemein lässt sich die Dynamik eines rotierenden Systems vollständig durch das wirkende Drehmoment $\symbf M$,
+den Trägheitstensor $\symbf I$ und die Winkelbeschleunigung $\symbf{\ddot{\varphi}}$ \mbox{beschreiben. Um} das
+Trägheitsmoment einer punktförmigen Masse $m$ im Abstand $r$ zur Drehachse für den skalaren Fall zu ermitteln, wird
+der Ausdruck
+\begin{equation}
+	I = mr^2
+	\label{eqn:punkt}
+\end{equation}
+herangezogen. Rotiert nun ein ausgedehnter starrer Körper mit Volumen $V$ und konstanter Dichte $\rho$ um eine
+feste Achse gilt, dass sich alle infinitesimalen Massen $\symup dm$ mit identischer Winkelgeschwindigkeit $\dot{\varphi}$
+bewegen. Aus \eqref{eqn:punkt} kann damit der Term
+\begin{equation}
+	I = \!\!\int\! r^2 \, \symup dm = \!\!\int\! r^2 \rho \, \symup dV
+	\label{eqn:träge}
+\end{equation}
+abgeleitet werden. Eine weitere vereinfachende Beziehung liefert der Steinersche Satz. Dieser besagt, dass sich das
+Trägheitsmoment eines Körpers der Masse $m$ bezüglich einer Achse mit Abstand $a$ zur parallelen Schwerpunktsachse mit
+Trägheitsmoment $I_0$ über
+\begin{equation}
+	I = I_0 + ma^2
+	\label{eqn:steiner}
+\end{equation}
+berechnet. Unter Verwendung von Formel~\eqref{eqn:träge} können gerade für einfache Geometrien gut die speziellen
+Trägheitsmomente hinsichtlich solcher Drehachsen bestimmt werden, die durch deren jeweiligen Schwerpunkt verlaufen.
+Die Vorschrift
+\begin{equation}
+	I_0 = \pfrac{2}{\raisebox{0.25ex}{$5$}} m R^2
+	\stepcounter{equation}\tag{4a}
+	\label{eqn:kugel}
+\end{equation}
+gibt dieses für eine Vollkugel mit Radius $R$ an. Für einen Vollzylinder bemisst
+\begin{equation}
+	I_0 = \pfrac{1}{\raisebox{0.25ex}{$2$}} m R^2
+	\tag{4b}
+	\label{eqn:zylinder_symm}
+\end{equation}
+dessen Trägheitsmoment bei Rotation um die Symmetrieachse. Mit
+\begin{equation}
+	I_0 = m \left( \pfrac{1}{\raisebox{0.25ex}{$4$}} R^2 + \pfrac{1}{\raisebox{0.25ex}{$12$}} h^2 \right)
+	\stepcounter{equation}\tag{4c}
+	\label{eqn:zylinder_senk}
+\end{equation}
+ist jenes für denselben Zylinder gegeben, wenn die Drehachse senkrecht zur Mantelfläche durch den Schwerpunkt verläuft.
+Dazu wird nun auch die Höhe $h$ benötigt.
+\enlargethispage{\baselineskip}\newpage
+
+Beim Ansetzen einer Kraft $\symbf F$ im Abstand $\symbf r$ zur Achse wird das Drehmoment über den Zusammenhang
+$\symbf M = \symbf F \times \symbf r$ definiert. Durch die bekannte Proportionalität $M \propto \sin\theta$ erreicht
+der Betrag des Vektorprodukts unter orthogonalem Einwirken bei $\theta = \qty{90}{\degree}$
+\begin{equation}
+	M = F \hspace{0.3ex} r
+	\label{eqn:dreh_kraft}
+\end{equation}
+als Maximum. Analog zur Translation mit $F=m\hspace{0.15ex}\ddot{r}$ kann dieses als $M = I \,\ddot{\varphi}$ formuliert
+werden. Handelt es sich um ein schwingungsfähiges System, wirkt der Drehung außerdem ein in erster Näherung zum Auslenkwinkel
+$\varphi$ lineares Rückstellmoment
+\begin{equation}
+	M = -D \,\varphi
+	\label{eqn:dreh_winkel}
+\end{equation}
+mit $D$ als Winkelrichtgröße entgegen. Gleichsetzen der Beträge von \eqref{eqn:dreh_kraft}
+und \eqref{eqn:dreh_winkel} ergibt
+\begin{equation}
+	D = \pfrac{F\hspace{0.3ex}r}{\raisebox{0.6ex}{$\varphi$}}
+	\label{eqn:richtgröße}
+\end{equation}
+als Beziehung, mit deren Hilfe der benannte Faktor bestimmt werden kann. Aufstellen des Terms
+$I \,\ddot{\varphi} = -D \,\varphi$ liefert dann genau die charakteristische Bewegungsgleichung des harmonischen
+Oszillators, dessen Schwingungsdauer
+\begin{equation}
+	T = \pfrac{1}{\raisebox{0.6ex}{$\nu\hspace{0.375ex}$}} =
+	\pfrac{2\pi}{\raisebox{0.6ex}{$\hspace{-0.15ex}\omega$}} =
+	2\pi \sqrt{\hspace{-0.15ex}\pfrac{I}{\hspace{-0.15ex}D\hspace{0.15ex}}\hspace{0.15ex}}
+	\label{eqn:period}
+\end{equation}
+sich über Frequenz $\nu$ und Kreisfrequenz $\omega$ bestimmt. Bei Drehschwingungen gilt diese zwar nur in
+Kleinwinkelnäherung, bietet sich durch Umstellen nach
+\begin{equation}
+	I = D \,\pfrac{T^{\hspace{0.15ex}2}}{\raisebox{-0.3ex}{$4\pi^2$}}
+	\label{eqn:träge_periode}
+\end{equation}
+aber trotzdem zur Bestimmung des Trägheitsmomentes an.
+

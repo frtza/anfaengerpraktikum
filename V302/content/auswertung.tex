@@ -1,0 +1,200 @@
+% Messwerte: Alle gemessenen Größen tabellarisch darstellen
+% Auswertung: Berechnung geforderter Ergebnisse mit Schritten/Fehlerformeln/Erläuterung/Grafik (Programme)
+\section{Auswertung}
+\label{sec:auswertung}
+
+Die hier verwendeten Komponenten weisen baubedingt gewisse Toleranzbereiche sowie unsystematische Fehler auf.
+Diese sind in relativer Darstellung angegeben, können für die Fehlerfortpflanzung also direkt als Verhältnis
+in~\eqref{eqn:speziell} eingesetzt werden. Außerdem folgt aufgrund der Funktionsweise des Potentiometers
+für Versuche, in denen ein solches zur Einstellung eines Widerstandsverhältnisses gebraucht wird:
+\begin{equation*}
+	\pfrac{\vphantom{\int}R_3}{\vphantom{\int}R_4} =
+	\pfrac{\vphantom{\int}R_3}{\vphantom{\int} \qty{1}{\kilo\ohm} - \! R_3}
+\end{equation*}
+Zur Bestimmung der Abweichung wird jeweils die Standardabweichung des Mittelwertes nach~\eqref{eqn:std}
+gebildet und mit dem Ergebnis der Fehlerfortpflanzung~\eqref{eqn:gauss} verglichen. Der größere Wert
+wird dann als Unsicherheit festgelegt. Zur graphischen Darstellung sowie zum automatisierten Ausgeben
+der Tabellen werden die Bibliotheken NumPy \cite{numpy} und Matplotlib \cite{matplotlib}
+unter Python \cite{python} genutzt.
+
+\subsection{Wheatstonesche Messbrücke}
+
+\begin{table}
+	\centering
+	\caption{Messdaten zur Bestimmung ohmscher Widerstände unter Anwendung der
+			 Wheatstoneschen Brücke bei $R_4 = \qty{1}{\kilo\ohm} - R_3$.}
+	\input{content/table_a.tex}
+	\label{tab:ohm}
+\end{table}
+
+Die relative Abweichung für $R_2$ ist mit $\qty{0.2}{\percent}$ angegeben, das am Potentiometer erzeugte
+Verhältnis von $R_3$ zu $R_4$ besitzt mit $\qty{0.5}{\percent}$ eine etwas größere Ungenauigkeit. $R_x$
+berechnet sich nach Formel~\eqref{eqn:wheatstone}. Daraus und aus den in Tabelle \ref{tab:ohm}
+nachgehaltenen Messergebnissen ergeben sich die Mittelwerte mit ihren baubedingten absoluten Fehlern: 
+\begin{align*}
+	R_{x,13} = \qty{321.1(1.7)}{\ohm} &&
+	R_{x,14} = \qty{906.3(4.9)}{\ohm}
+\end{align*}
+Die Abweichungen der Mittelwerte fallen mit $\symup{\Delta}R_{x,13} = \qty{0.1}{\ohm}$ 
+und $\symup{\Delta}R_{x,14} = \qty{1.1}{\ohm}$ deutlich geringer aus. \newpage
+
+\subsection{Kapazitätsmessbrücke}
+
+\begin{table}
+	\centering
+	\caption{Messdaten zur Bestimmung von Kapazität und Verlustwiderstand.}
+	\input{content/table_b.tex}
+	\label{tab:kapazität}
+\end{table}
+
+Der relative Fehler von $C_2$ beträgt $\qty{0.2}{\percent}$, während das Verhältnis von $R_3$ zu $R_4$
+weiterhin mit einer Abweichung von $\qty{0.5}{\percent}$ behaftet ist. Um den verstellbaren Widerstand
+$R_2$ zu realisieren, wird ein einzelner Ausgang eines Potentiometers genutzt. Der zugehörige Fehler ist
+mit $\qty{3}{\percent}$ gegeben. Zur Messung der Kapazitäten werden sie mit Wert 13 {in} Reihe geschaltet.
+Dies ermöglicht es, die Verlustwiderstände mit den vorherigen Ergebnissen zu vergleichen. Unter Verwendung
+von~\eqref{eqn:kapazität} lassen sich die in Tabelle \ref{tab:kapazität} eingetragenen Messungen auswerten.
+
+Für Wert 4 ergibt sich ein Fehler von $\qty{5.5}{\nano\farad}$, welchen die Standardabweichung
+eindeutig übertrifft. Dagegen ist für den kombinierten Verlustwiderstand die Abweichung des Mittelwertes
+mit $\symup{\Delta} R_{x,4} = \qty{1.5}{\ohm}$ geringer:
+\begin{align*}
+	C_{x,4} = \qty{1030(78)}{\nano\farad} && R_{x,4} = \qty{330(10)}{\ohm}
+\end{align*}
+Zu Wert 3 liegen beide baubedingten Fehler mit $\qty{2.4}{\nano\farad}$ und $\qty{11}{\ohm}$ deutlich
+unter ihren entsprechenden Mittelwertsabweichungen:
+\begin{align*}
+	C_{x,3} = \qty{448(32)}{\nano\farad} &&
+	R_{x,3} = \qty{359(27)}{\ohm}
+\end{align*}
+Der Vergleich der kombinierten Wirkwiderstände mit dem einzelnen zuvor gemessenen Bauteil
+$R_{x,13} = \qty{321.1(1.7)}{\ohm}$ zeigt, dass die realen Kondensatoren tatsächlich geringere Verluste
+aufweisen, diese aber nicht unbedingt völlig vernachlässigbar sind. 
+
+Für die $RC$-Kombination Wert 8 sind die Messungen ähnlicher, die Standardabweichungen 
+$\symup{\Delta} C_{x,8} = \qty{0.1}{\nano\farad}$ und $\symup{\Delta} R_{x,8}= \qty{1.5}{\ohm}$
+fallen geringer als die baubedingten Fehler aus:
+\begin{align*}
+	C_{x,8} = \qty{292.6(1.6)}{\nano\farad} &&
+	R_{x,8} = \qty{586(18)}{\ohm}
+\end{align*}
+
+\subsection{Induktivitätsmessbrücke}
+\label{sec:4.3}
+
+\begin{table}
+	\centering
+	\caption{Messdaten zur Bestimmung von Induktivität und Verlustwiderstand.}
+	\input{content/table_c.tex}
+	\label{tab:induktivität}
+\end{table}
+
+Die Induktivität $L_2$ besitzt eine relative Abweichung \qty{0.2}{\percent}. Für Größen, \mbox{welche ohmsche}
+Widerstände enthalten, gelten die gleichen Ungenauigkeiten wie vorher. Werden die
+Ausdrücke~\eqref{eqn:induktivität} auf die Messergebnisse aus Tabelle \ref{tab:induktivität} angewendet,
+überwiegt erneut die Mittelwertsabweichung im Vergleich zu den baubedingten Fehlern $\qty{0.7}{\milli\henry}$
+und $\qty{5.4}{\ohm}$:
+\begin{align*}
+	L_{x,18} = \qty{118.7(5.7)}{\milli\henry} && R_{x,18} = \qty{178(43)}{\ohm}
+\end{align*}
+
+\subsection{Maxwell-Brücke}
+\label{sec:4.4}
+
+\begin{table}
+	\centering
+	\caption{Messdaten zur Bestimmung von Induktivität und Verlustwiderstand mittels der
+			 Maxwell-Brücke bei $R_2 = \qty{1}{\kilo\ohm}$.}
+	\input{content/table_d.tex}
+	\label{tab:maxwell}
+\end{table}
+
+Nun werden zwei variable Widerstände $R_3$ und $R_4$ eingebaut, die beide eine Toleranz von
+$\qty{3}{\percent}$ besitzen. Für die Kapazität $C_4$ und den festen Widerstand $R_2$ kann wieder
+von einem relativen Fehler $\qty{0.2}{\percent}$ ausgegangen werden. Mit~\eqref{eqn:maxwell} lassen
+sich aus den Werten in Tabelle \ref{tab:maxwell} folgende Ergebnisse bestimmen:
+\begin{align*}
+	L_{x,16} = \qty{131.1(3.9)}{\milli\henry} && R_{x,16} = \qty{639(78)}{\ohm}
+\end{align*}
+Für die Induktivität fällt die Standardabweichung des Mittelwertes
+$\symup{\Delta} L_{x,16} = \qty{3.3}{\milli\henry}$ knapp geringer aus, beim Verlustwiderstand ist wiederum
+der baubedingte Fehler mit $\qty{27}{\ohm}$ klar niedriger.
+
+\subsection{Frequenzverhalten der Wien-Robinson-Brücke}
+
+Die in der Schaltung verbauten Komponenten haben die Werte $R' \! = \qty{500}{\ohm}$, $R = \qty{664}{\ohm}$
+und $C = \qty{450}{\nano\farad}$. Damit ergibt sich folgende Sperrfrequenz: 
+\begin{equation*}
+	\nu_0 = \pfrac{\omega_0}{2\pi} = \pfrac{1}{2\pi RC} = \qty{532.65}{\hertz}
+\end{equation*}
+Unter Betrachtung von Abbildung \ref{fig:plot} und Tabelle \ref{tab:wien} wird direkt deutlich, dass bei
+$\Omega = 1$ ein Extremum liegt, genau wie es nach~\eqref{eqn:wien} zu erwarten wäre. Allerdings
+handelt es sich dabei um ein Maximum statt einem Minimum. Auch global scheinen die Daten eher der Übertragung
+eines Bandpasses anstelle der eines Sperrfilters zu folgen. Mögliche Gründe dafür werden in Abschnitt
+\ref{sec:diskussion} diskutiert. Zur Durchführung der anschließenden Rechnungen wird davon ausgegangen,
+dass die Daten in guter Näherung einer verzerrten Spiegelung der Theoriekurve entsprechen.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics{build/plot.pdf}
+	\caption{Messdaten mit Theoriekurve zum Frequenzverhalten der Wien-Robinson-Brücke
+			 in linearer und halblogarithmischer Skalierung.}
+	\label{fig:plot}
+\end{figure}
+
+\begin{table}[H]
+	\centering
+	\caption{Messdaten zur Untersuchung des Frequenzverhaltens einer Wien-Robinson-Brücke mit
+			 $R' \! = \qty{500}{\ohm}, R = \qty{664}{\ohm}$ und $C = \qty{450}{\nano\farad}$.}
+	\input{build/table_e.tex}
+	\label{tab:wien}
+\end{table}
+
+\subsection{Klirrfaktor des Generators}
+
+Um den Klirrfaktor nach~\eqref{eqn:klirr} zu bestimmen, wird zunächst in erster Approximation angenommen,
+dass sich die Summe der Oberwellen nur aus der ersten Oberschwingung $U_{\! 1}$ mit $\nu = 2 \, \nu_0$
+zusammensetzt. Als übrig bleibende Brückenspannung wird die Differenz aus der gemessenen maximalen
+Übertragung $\num{0.42}$ und dem asymptotischen Verhalten der Theoriekurve $\num{0.33}$ gebildet. Mit
+einer Speisespannung $\symup{U_{\! S}} = \qty{1}{\volt}$ ergibt sich somit
+$\symup{U_{\! Br}} = \qty{0.09}{\volt}$. Dabei ist anzumerken, dass es sich weiterhin immer um die
+Amplituden der Schwingungen handelt. Das Verhältnis von $\symup{U_{\! Br}}$ und $U_{\! 1}$
+ergibt sich durch Einsetzen von $\Omega = 2$ in~\eqref{eqn:wien} zu \num{0.15}. Nun kann berechnet
+werden:
+\begin{equation*}
+	U_{\! 1} = \pfrac{\qty{0.09}{\volt}}{\num{0.15}} = \qty{0.6}{\volt}
+\end{equation*}
+Da die Grundschwingung $U_{\! 0} = \qty{1}{\volt}$ entspricht, würde sich für den Generator damit ein
+Klirrfaktor von $k = \num{0.6}$ ergeben. 
+
+Um dieses Ergebnis unter Berücksichtigung des Gesamtverlaufs der Aufzeichnungen zu prüfen, werden weitere
+Überlegungen angestellt. Statt einer direkten korrektiven Spiegelung kann vereinfacht angenommen werden,
+dass sich die tatsächliche Übertragung als Superposition aus den Übertragungsfunktionen von Grundschwingung
+und erster Oberschwingung darstellen lässt. Der Einfluss der letzteren ist dabei um den Klirrfaktor
+$k$ abgeschwächt. Aus~\eqref{eqn:wien} bildet sich damit folgender Ausdruck:
+\begin{align*}
+	\qquad F_0 &= \pfrac{\, 1 \, }{\raisebox{0.5ex}{$3$}} \! \left(
+	\!\! \left( \! \pfrac{\left( \Omega^2 - 1 \right)^{\! 2}}
+	{\left( 1 - \Omega^2 \right)^{\! 2} \! + 9 \Omega^2} \! \right)
+	^{\!\! \frac{\raisebox{0ex}{$\scriptstyle1$}}{\raisebox{-0.3ex}{$\scriptstyle2$}}} \!\! + \, k \!
+	\left( \! \pfrac{\left( 4 \Omega^2 - 1 \right)^{\! 2}}
+	{\left( 1 - 4 \Omega^2 \right)^{\! 2} \! + 36 \Omega^2} \! \right)
+	^{\!\! \frac{\raisebox{-0ex}{$\scriptstyle1$}}{\raisebox{-0.3ex}{$\scriptstyle2$}}} \right) \\
+\intertext{Die Spiegelung $F_1$ der Gleichung $F_0$ soll für $\Omega = 0$ immer Null sein:}
+	\qquad F_1 &= \pfrac{\, 1 \, }{\raisebox{0.5ex}{$3$}} \! \left(
+	\! 1 + k - \! \left( \! \pfrac{\left( \Omega^2 - 1 \right)^{\! 2}}
+	{\left( 1 - \Omega^2 \right)^{\! 2} \! + 9 \Omega^2} \! \right)
+	^{\!\! \frac{\raisebox{-0ex}{$\scriptstyle1$}}{\raisebox{-0.3ex}{$\scriptstyle2$}}} \!\! - \, k \!
+	\left( \! \pfrac{\left( 4 \Omega^2 - 1 \right)^{\! 2}}
+	{\left( 1 - 4 \Omega^2 \right)^{\! 2} \! + 36 \Omega^2} \! \right)
+	^{\!\! \frac{\raisebox{-0ex}{$\scriptstyle1$}}{\raisebox{-0.3ex}{$\scriptstyle2$}}} \right)
+\end{align*}
+Es wird mithilfe von SciPy \cite{scipy} unter Python \cite{python} eine nichtlineare Regression entlang
+$F_1$ auf die Daten in Tabelle \ref{tab:wien} angewendet. Dieses Vorgehen liefert mit
+$k = \input{build/k.tex}$ einen ähnlichen Klirrfaktor wie zuvor. \vspace{-0.35ex}
+\begin{figure}[H]
+	\centering
+	\includegraphics{build/fit.pdf}
+	\caption{Messdaten und gespiegelte Kurven $F \,$ nach Anwendung der nichtlinearen
+			 Näherung kleinster Abweichungsquadrate.}
+	\label{fig:fit}
+\end{figure}

@@ -1,0 +1,163 @@
+\tikzstyle{every node} = [font = \small]
+
+% frame
+\draw[draw=white] 
+	(0,0) -- ++(0,9) -- ++(8,0) -- ++(0,-9) -- cycle;
+
+% valve
+\draw[draw=darkgray, line width=0.5mm] 
+	(3.6,6.7) -- ++(0,-0.2) -- ++(0.8,0.4) -- ++(0,-0.4) -- ++(-0.8,0.4) -- cycle;
+
+% compresser
+\draw[draw=darkgray, line width=0.5mm] 
+	(3.4,0) -- ++(0,1.8) -- ++(1.2,0) -- ++(0,-1.8) -- cycle;
+\draw[draw=darkgray, line width=0.5mm] 
+	(4,1.8) -- ++(0,-0.6);
+\draw[draw=darkgray, line width=0.5mm] 
+	(3.8,1.2) -- ++(0.4,0);
+\draw[draw=darkgray, line width=0.5mm] 
+	(3.4,1.2) -- ++(0.2,0);
+\draw[draw=darkgray, line width=0.5mm] 
+	(4.6,1.2) -- ++(-0.2,0);
+\draw[draw=darkgray, line width=0.5mm] 
+	(3.7,1.35) -- ++(0,-0.2);
+\draw[draw=darkgray, line width=0.5mm] 
+	(3.7,1.15) -- ++(-0.1,-0.2) -- ++(0.2,0) -- cycle;
+\draw[draw=darkgray, line width=0.5mm] 
+	(4.3,1.25) -- ++(0,-0.2);
+\draw[draw=darkgray, line width=0.5mm] 
+	(4.3,1.25) -- ++(-0.1,0.2) -- ++(0.2,0) -- cycle;
+\draw[draw=darkgray, line width=0.5mm] 
+	(3.5,0.7) -- ++(1,0) -- ++(0,-0.15) -- ++(-1,0) -- cycle;
+\draw[draw=darkgray, line width=0.5mm] 
+	(3.95,0.55) -- ++(0,-0.55);
+\draw[draw=darkgray, line width=0.5mm] 
+	(4.05,0.55) -- ++(0,-0.55);
+\draw[draw=darkgray, line width=0.5mm] 
+	(3.85,0.2) -- ++(0,-0.2);
+\draw[draw=darkgray, line width=0.5mm] 
+	(4.15,0.2) -- ++(0,-0.2);
+
+% wattmeter
+\draw[draw=darkgray, line width=0.75mm] 
+	(4.6,0.3) -- (5.4,0.3);
+\draw[draw=darkgray, fill=darkgray] 
+	(5.4,0.3) circle (1mm);
+
+% control
+\draw[draw=darkgray, line width=0.75mm, line cap=round] 
+	(1.7,1.5) -- (1.7,0.8);
+\draw[draw=darkgray, fill=darkgray] 
+	(1.7,1.5) circle (1.1mm);
+
+% diffuser
+\draw[draw=darkgray, line width=0.75mm, line cap=round] 
+	(5.3,6.7) -- (5.3,6);
+\draw[draw=darkgray, fill=darkgray] 
+	(5.3,6.7) circle (1.1mm);
+
+% left
+
+% bucket
+\draw[draw=lightgray, fill=lightgray, line width=0mm, line cap=round, rounded corners=5mm] 
+	(-0.9,5.25) -- ++(0,-2.75) -- ++(1.8,0) -- ++(0,2.75);
+\draw[draw=gray, line width=1.8mm, line cap=round, rounded corners=5mm] 
+	(-0.9,5.5) -- ++(0,-3) -- ++(1.8,0) -- ++(0,3);
+% mixer
+\draw[draw=darkgray, line width=0.5mm] 
+	(-0.45,7.5) -- ++(0,-2.75);
+\draw[draw=darkgray, line width=0.5mm, line cap=round, rounded corners=0.45mm] 
+	(-0.45,4.75) -- ++(0,-0.05) -- ++(-0.1,-0.1) -- ++(-0.05,0);
+\draw[draw=darkgray, line width=0.5mm, line cap=round, rounded corners=0.45mm] 
+	(-0.45,4.75) -- ++(0,-0.05) -- ++(0.1,-0.1) -- ++(0.05,0);
+\draw[draw=darkgray, line width=0.5mm] 
+	(-0.6,7.65) -- ++(0,-0.15) -- ++(0.3,0) -- ++(0,0.15);
+\draw[draw=darkgray, line width=0.5mm] 
+	(-0.75,7.65) -- ++(0.6,0) -- ++(0,0.975) -- ++(-0.6,0) -- cycle;
+% thermometer
+\draw[draw=darkgray, line width=0.75mm, line cap=round] 
+	(0.45,4.875) -- (1.75,4.875);
+\draw[draw=darkgray, fill=darkgray] 
+	(1.75,4.875) circle (1mm);
+% manometer
+\draw[draw=darkgray, line width=1mm] 
+	(1.8,6.7) -- (1.8,7);
+\draw[draw=darkgray, line width=0.75mm] 
+	(1.8,7.35) circle (3.5mm);
+\draw[draw=darkgray, line width=0.5mm] 
+	(1.8,7.35) circle (2.5mm);
+\draw[draw=darkgray, line width=0.5mm, line cap=round] 
+	(1.8,7.35) -- ++(0.15,0.15);
+% snake
+\draw[draw=darkgray, line width=1mm, line cap=round, rounded corners=1.2mm] 
+	(0,6) -- ++(0,-1.5) -- ++(0.6,0) -- ++(0,-0.25) -- ++(-1.2,0) -- ++(0,-0.25)
+	-- ++(1.2,0) -- ++(0,-0.25) -- ++(-1.2,0) -- ++(0,-0.25)
+	-- ++(1.2,0) -- ++(0,-0.25) -- ++(-1.2,0) -- ++(0,-0.25)
+	-- ++(0.6,0) -- (0,2);
+\draw[draw=darkgray, line width=1mm, rounded corners=2.4mm] 
+	(0,2) -- (0,1.5) -- (3.4,1.5);
+\draw[draw=darkgray, line width=1mm, rounded corners=2.4mm] 
+	(0,6) -- (0,6.7) -- (3.6,6.7);
+
+% right
+
+% bucket
+\draw[draw=lightgray, fill=lightgray, line width=0mm, line cap=round, rounded corners=5mm] 
+	(7.1,5.25) -- ++(0,-2.75) -- ++(1.8,0) -- ++(0,2.75);
+\draw[draw=gray, line width=1.8mm, line cap=round, rounded corners=5mm] 
+	(7.1,5.5) -- ++(0,-3) -- ++(1.8,0) -- ++(0,3);
+% mixer
+\draw[draw=darkgray, line width=0.5mm] 
+	(8.45,7.5) -- ++(0,-2.75);
+\draw[draw=darkgray, line width=0.5mm, line cap=round, rounded corners=0.45mm] 
+	(8.45,4.75) -- ++(0,-0.05) -- ++(-0.1,-0.1) -- ++(-0.05,0);
+\draw[draw=darkgray, line width=0.5mm, line cap=round, rounded corners=0.45mm] 
+	(8.45,4.75) -- ++(0,-0.05) -- ++(0.1,-0.1) -- ++(0.05,0);
+\draw[draw=darkgray, line width=0.5mm] 
+	(8.3,7.65) -- ++(0,-0.15) -- ++(0.3,0) -- ++(0,0.15);
+\draw[draw=darkgray, line width=0.5mm] 
+	(8.15,7.65) -- ++(0.6,0) -- ++(0,0.975) -- ++(-0.6,0) -- cycle;
+% thermometer
+\draw[draw=darkgray, line width=0.75mm, line cap=round] 
+	(7.55,4.875) -- (6.25,4.875);
+\draw[draw=darkgray, fill=darkgray] 
+	(6.25,4.875) circle (1mm);
+% manometer
+\draw[draw=darkgray, line width=1mm] 
+	(6.2,6.7) -- (6.2,7);
+\draw[draw=darkgray, line width=0.75mm] 
+	(6.2,7.35) circle (3.5mm);
+\draw[draw=darkgray, line width=0.5mm] 
+	(6.2,7.35) circle (2.5mm);
+\draw[draw=darkgray, line width=0.5mm, line cap=round] 
+	(6.2,7.35) -- ++(0.15,0.15);
+% snake
+\draw[draw=darkgray, line width=1mm, line cap=round, rounded corners=1.2mm] 
+	(8,6) -- ++(0,-1.5) -- ++(-0.6,0) -- ++(0,-0.25) -- ++(1.2,0) -- ++(0,-0.25)
+	-- ++(-1.2,0) -- ++(0,-0.25) -- ++(1.2,0) -- ++(0,-0.25)
+	-- ++(-1.2,0) -- ++(0,-0.25) -- ++(1.2,0) -- ++(0,-0.25)
+	-- ++(-0.6,0) -- (8,2);
+\draw[draw=darkgray, line width=1mm, rounded corners=2.4mm] 
+	(8,2) -- (8,1.5) -- (4.6,1.5);
+\draw[draw=darkgray, line width=1mm, rounded corners=2.4mm] 
+	(8,6) -- (8,6.7) -- (4.4,6.7);
+
+% labels
+\node at (-1.75,8.175) {Rührmotor};
+\node at (9.75,8.175) {Rührmotor};
+\node at (1.8,7.975) {Manometer};
+\node at (6.2,7.975) {Manometer};
+\node at (4,7.2) {Drosselventil};
+\node at (1.8,6.4) {$p_a$};
+\node at (6.2,6.4) {$p_b$};
+\node at (5.3,5.725) {Reiniger};
+\node at (1.775,5.25) {$T_2$};
+\node at (6.275,5.25) {$T_1$};
+\node at (2.15,4.55) {Thermometer};
+\node at (5.85,4.55) {Thermometer};
+\node at (-1.95,3.9) {Reservoir $2$};
+\node at (9.95,3.9) {Reservoir $1$};
+\node at (4,2.075) {Kompressor};
+\node at (1.7,0.55) {Steuerung};
+\node at (5.95,0.625) {Leistungsmesser};
+\node at (5.35,-0.05) {$P$};

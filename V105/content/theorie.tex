@@ -1,0 +1,170 @@
+% Titel: Ziel des Versuchs
+% Theorie: Physikalische Grundlagen von Versuch/Messverfahren, Gleichungen ohne Herleitung knapp erklären
+\section{Zielsetzung}
+
+Die nachfolgende Versuchsreihe dient zur Bestimmung des magnetischen Moments eines Permanentmagneten. Es werden
+dazu verschiedene Messverfahren angewendet, welche den Testkörper unter Einwirkung eines Drehmoments sowie als
+harmonischen Oszillator und präzedierenden Kreisel untersuchen. Die notwendigen theoretischen Grundlagen sind
+der Versuchsanleitung \cite{magnetisch} entnommen.
+
+\section{Theorie}
+\label{sec:theorie}
+
+\subsection{Homogene Magnetfelder}
+
+Durch einen vom Strom~$I$ durchflossenen Leiter mit dem infinitesimalen Längenelement~$\symup d \symbf s$
+wird am Ort~$\symbf r$ nach dem Biot-Savart-Gesetz die magnetische Flussdichte
+\begin{equation}
+	\symup d \symbf B = \frac{\mu_0}{\raisebox{0.15ex}{$4\pi$}} \hspace{0.15ex} I
+	\symup d \symbf s \times \frac{\raisebox{-0.45ex}{$\symbf r$}}{r^3}
+	\label{eqn:biot-savart}
+\end{equation}
+erzeugt. Der Bezeichner $\mu_0 = \input{build/mu_0.tex}$ \cite{scipy} gibt hier die magnetische
+Permeabilität des Vakuums an. Auf der Symmetrieachse einer aus $\hspace{-0.1ex}N\hspace{0.1ex}$ kreisförmigen
+Leiterschleifen mit Radius~$R$ zusammengesetzten Spule ist damit ein Feld der Form
+\begin{equation}
+	\symbf B_0(x) = \frac{\mu_0}{\raisebox{0.15ex}{$2$}} \hspace{0.015ex}N\hspace{-0.015ex}I\hspace{0.15ex}
+	\frac{\raisebox{-0.45ex}{$R^2$}}{(R^2 + x^2)^{3\hspace{-0.045ex}/2}} \hspace{0.15ex} \hat{\symbf x}
+	\label{eqn:feld_spule}
+\end{equation}
+gegeben. Der Feldgradient entlang dieser Achse entspricht dann
+\begin{equation}
+	\frac{\symup dB_0}{\symup dx} = -\frac{3\mu_0}{\raisebox{0.15ex}{$2$}} \hspace{0.015ex}N\hspace{-0.015ex}I\hspace{0.15ex}
+	\frac{\raisebox{-0.45ex}{$R^2x$}}{(R^2 + x^2)^{5\hspace{-0.12ex}/2}}
+	\label{eqn:grad_spule}
+\end{equation}
+und zeigt die örtliche Änderungsrate der Feldstärke~$B_0$ an. Um ein homogenes Magnetfeld herstellen zu können,
+werden zwei gleichsinnig vom Strom~$I$ durchflossene Kreisspulen identischer Windungszahl~$N$ im gegenseitigen
+Abstand~$d$ so zueinander positioniert, dass sich ihre Symmetrieachsen überlagern. Die Superposition der einzelnen
+Beiträge sorgt für eine näherungsweise konstante Feldstärke um den gemeinsamen Mittelpunkt. Liegt dieser im
+Ursprung, lässt sich die skalare Flussdichte \eqref{eqn:feld_spule} durch
+\begin{equation}
+	B(x) = B_0\!\left(x+\pfrac{d}{\raisebox{0.21ex}{$2$}}\right) + B_0\!\left(x-\pfrac{d}{\raisebox{0.21ex}{$2$}}\right)
+	\label{eqn:feld_helmholtz}
+\end{equation}
+ausdrücken. Eine solche Anordnung heißt Helmholtz-Spule, wenn $d = R$ gilt. In diesem Fall wird das zentrale Feld
+maximal homogen und variiert mit $B(x) = B(0) + \mathcal{O}(x^4)$ nur in vierter Ordnung. Für abweichende Distanzen kann
+mit konstanter linearer Näherung noch $B(x) = B(0) + \mathcal{O}(x^2)$ geschrieben werden. Befindet sich ein Dipol in einem
+homogenen Magnetfeld, erfährt dieser ein Drehmoment der Form
+\begin{equation}
+	\symbf D = \symbf \mu \times \symbf B
+	\label{eqn:dreh_magnetisch}
+\end{equation}
+und richtet sich so aus, dass magnetisches Moment $\symbf \mu$ und Flussdichte $\symbf B$ \mbox{parallel verlaufen.}
+\enlargethispage{\baselineskip}\newpage
+
+\subsection{Makroskopische Dipole}
+
+Ein magnetischer Dipol lässt sich beispielsweise durch einen Permanentmagneten oder~eine stromdurchflossene
+Leiterschleife realisieren. Letztere weist ein magnetisches Moment
+\begin{equation}
+	\symbf \mu = I \symbf A
+	\label{eqn:moment_schleife}
+\end{equation}
+auf, welches senkrecht zu ihrer Querschnittsfläche $A$ steht. Für Permanentmagneten ist die rechnerische Bestimmung
+von $\symbf \mu$ problematisch, das magnetische Moment kann jedoch auf verschiedene Weisen experimentell ermittelt
+werden.
+
+\subsubsection{Gravitation}
+
+Als statische Methode wird die Gravitationskraft $\symbf F = m \symbf g$ mit der Erdbeschleunigung
+$g = \input{build/g.tex}$ \cite{scipy} ausgenutzt. Eine Punktmasse $m$, die sich im Abstand $\symbf r$
+auf der Achse des magnetischen Moments befindet, übt dazu ein Drehmoment
+\begin{equation}
+	\symbf D = m \symbf r \times \symbf g
+	\label{eqn:dreh_gravitation}
+\end{equation}
+auf den Permanentmagneten aus. Zu jeder festen Entfernung $r$ existiert jeweils genau eine Magnetfeldstärke, welche dieses
+nach \eqref{eqn:dreh_magnetisch} kompensiert. So stellt sich ein Gleichgewicht
+\begin{equation}
+	\symbf \mu \times \symbf B = m \symbf r \times \symbf g
+	\stepcounter{equation}
+	\tag{8a}
+	\label{eqn:dreh_gleichgewicht_vektor}
+\end{equation}
+ein, wobei $\symbf B$ und $\symbf g$ sowie $\symbf \mu$ und $\symbf r$ zueinander gleichgerichtet sind. Damit folgt
+der Term $\mu B \sin \theta = m r g \sin \theta$ aus den Kreuzprodukten. Die Winkelabhängigkeit $\theta$ zwischen
+den entsprechenden Vektoren kann gekürzt werden, sodass sich
+\begin{equation}
+	\mu B = m r g
+	\tag{8b}
+	\label{eqn:dreh_gleichgewicht_skalar}
+\end{equation}
+ergibt. Das magnetische Moment des betrachteten Dipols wird mit $\mu$ bemessen.
+
+\subsubsection{Schwingung}
+
+Über die Schwingungsdauer $T$ des Permanentmagneten kann alternativ eine dynamische Messmethode aufgestellt werden.
+Formel~\eqref{eqn:dreh_magnetisch} lässt sich per Definition des Drehmoments mithilfe von Trägheitsmoment $J$ und
+Winkelbeschleunigung $\ddot{\theta}$ in der Form $-\mu B \sin \theta = J \ddot{\theta}$ formulieren. Diese
+Differentialgleichung wird unter Kleinwinkelnäherung zu
+\begin{equation}
+	-\mu B \theta = J \ddot{\theta}
+	\label{eqn:harmonisch}
+\end{equation}
+und beschreibt damit den harmonischen Oszillator. Dessen Periodendauer
+\begin{equation}
+	T^2 = \pfrac{4\pi^2 J}{\mu B}
+	\label{eqn:schwingung}
+\end{equation}
+löst die Bewegungsgleichung.
+
+\subsubsection{Präzession}
+
+Ein weiterer dynamischer Ansatz versetzt den Dipol in Rotation und modelliert diesen als Kreisel. Durch das Einwirken
+einer äußeren Kraft beginnt die Figurenachse $\symbf L_0$ sich auf einem Kegelmantel um die Drehimpulsachse $\symbf L$
+zu bewegen. Dieses Phänomen wird Präzession genannt und tritt gerade dann auf, wenn der Permanentmagnet dem Einfluss
+eines homogenen Magnetfeldes ausgesetzt ist. Wieder dient hierbei ein Zusammenhang des Drehmoments dazu, um aus
+\eqref{eqn:dreh_magnetisch} eine Differentialgleichung der Form
+\begin{equation}
+	\symbf \mu \times \symbf B =  \dot{\symbf L}_0
+	\label{eqn:dreh_impuls}
+\end{equation}
+herzuleiten. Eine Lösung für das präzedierende System ist mit der Umlaufrate
+\begin{equation}
+	\Omega =  \pfrac{\mu B}{L_0}
+	\label{eqn:frequenz}
+\end{equation}
+gegeben. Dabei lässt sich der Drehimpuls $L_0 = J \omega$ über das Trägheitsmoment $J$ und die Kreisfrequenz
+$\omega = 2\pi \nu$ bestimmen. Indem die Präzessionsfrequenz $\Omega$ durch den Kehrwert der Umlaufzeit $T$
+ausgedrückt wird, folgt daraus die Beziehung
+\begin{equation}
+	\pfrac{\hspace{0.45ex}1\hspace{0.45ex}}{\hspace{-0.15ex}T\hspace{0.15ex}} = \pfrac{\mu B}{2\pi L_0}
+	\label{eqn:präzession}
+\end{equation}
+unter der Voraussetzung, dass die Rotationsfrequenz $\nu$ konstant ist.
+
+\subsection{Fehlerrechnung}
+
+Um die Abweichung der Messgrößen zu untersuchen, werden noch einige weitere Formeln benötigt.
+Die Rechenvorschrift für den Mittelwert $\overline{x}$ ist mit
+\begin{equation}
+	\overline{x} = \pfrac{1}{N \,} \sum_{n=1}^N x_n
+	\label{eqn:mittel}
+\end{equation}
+gegeben. Zur Bestimmung der Standardabweichung $\symup{\Delta}\overline{x}$ kann
+\begin{equation}
+	(\symup{\Delta}\overline{x})^2 = \pfrac{1}{N(N-1)} \sum_{n=1}^N (x_n \! - \overline{x})^2
+	\label{eqn:std}
+\end{equation}
+verwendet werden. Durch die Gaußsche Fehlerfortpflanzung
+\begin{equation}
+	(\symup{\Delta}f)^2 = \sum_{n=1}^N
+	\left( \! \pfrac{\partial^{\!} f}{\partial x_{\raisebox{0.2ex}{$\scriptstyle{n}$}}} \!
+	\right)^{\!\! 2} \!\! (\symup{\Delta}x_{\raisebox{0.2ex}{$\scriptstyle{n}$}})^2
+	\label{eqn:gauss}
+\end{equation}
+ist die Abweichung $\symup{\Delta}f$ für von fehlerbehafteten Werten $x_n \!$ abhängige
+Größen $\hspace{-0.2ex} f \hspace{0.2ex}$ definiert.
+
+\subsection{Lineare Regression}
+
+Entlang der linear abhängigen Messgrößen $(x_n,y_n)$ für $n = 1,\dotsc,\hspace{-0.1ex}N\hspace{0.1ex}$
+lassen sich über
+\begin{align}
+	a = \pfrac{\overline{x\hspace{0.15ex}y\hspace{0.15ex}} - \overline{x} \: \overline{y\hspace{0.15ex}}}
+	{\overline{x^2} - \overline{x}^{\hspace{0.15ex}2}} && b = \overline{y\hspace{0.15ex}} - a \overline{x}
+	\label{eqn:regression}
+\end{align}
+die Parameter der Ausgleichsgerade $y = ax + b$ berechnen.
+

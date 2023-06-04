@@ -1,0 +1,40 @@
+% Diskussion: Resultate mit Fehler/Genauigkeit zusammenstellen, Literaturwerte/Messmethoden/Ursachen vergleichen
+% Literatur: Verwendete Literatur/Grafiken/Werte/Programme
+% Anhang: Kopie der analog eingetragenen Messdaten
+\section{Diskussion}
+\label{sec:diskussion}
+
+Neben den unvermeidbaren Ungenauigkeiten bei der Messwertaufzeichnung lässt sich ein weiterer genereller Fehlereinfluss
+durch die trotz verbauter Libelle nicht kompensierte Neigung der Apparatur festhalten. Die resultierenden Abweichungen
+dürften dabei jedoch vernachlässigbar sein. Anders verhält es sich mit der Leistung des Luftkissens, welches den Kontakt
+zwischen Kugel und Halterung nur in unregelmäßigen Intervallen minimiert. Es kommt zu zeitweise starker Reibung, dies
+hat signifikante Verfälschungen der Daten zur Folge. Für die statische Messung lässt sich ein fehlerhaftes Festsetzen
+gut von echten Gleichgewichtslagen unterscheiden, weshalb die Ergebnisse hierzu eine vergleichsweise geringe Streuung
+aufweisen. Das auf diese Weise ermittelte magnetische Moment lautet $\mu = \input{build/mu_grav.tex}$ und ist mit dem
+ungefilterten Wert $\mu = \input{build/mu_präz_1.tex}$ sowie dem gewerteten Resultat $\mu = \input{build/mu_präz_2.tex}$
+aus der Präzession vereinbar. Betrachtung der Methode über die Schwingungsdauer zeigt mit $\mu = \input{build/mu_schw}$
+eindeutig eine schlechtere Übereinstimmung auf, obwohl ebenfalls ein eher geringer Fehlerbereich vorliegt. Diese
+Tatsache kann wahrscheinlich auf erhöhte Reibung durch Fehlfunktion des Luftkissens zurückgeführt werden, deren
+Korrektur sich für dynamische Methoden wesentlich problematischer gestaltet. Zur Präzessionsuntersuchung wird ein
+baugleicher Apparat genutzt, der recht stabil geringere mechanische Widerstände erzielt. Die größeren
+Unsicherheitsintervalle stammen in diesem Fall aus anderer Quelle. Es sei dazu angemerkt, dass idealerweise eine
+Rotationsfrequenz zwischen \qty{4}{\hertz} und \qty{6}{\hertz} angestrebt wird, da die zeitlich exponentiell
+abfallende Frequenzkurve dazwischen noch ausreichend flach verläuft. Eine gezielt konstante Rotationsrate kann durch
+Drehen von Hand allerdings kaum gewährleistet werden. Dies lässt sich an den Umlaufzeiten bei $I = \qty{2.2}{\ampere}$,
+$I = \qty{2.4}{\ampere}$ und $I = \qty{2.6}{\ampere}$ in Tabelle \ref{tab:präz} illustrieren, da diese Messwerte
+einem gemeinsamen Drehvorgang entspringen. Die in Abbildung \ref{fig:präz} ausschnitthaft dargestellte
+Regressionsgerade mit
+\begin{align*}
+	a = \input{build/a_präz_3.tex} && b = \input{build/b_präz_3.tex}
+\end{align*}
+passt gut zu den Daten. Besagtes Vorgehen, das Magnetfeld also anzupassen, ohne die Kugel währenddessen zu stoppen,
+ist zunächst durchaus brauchbar. Wird daraus für $\qty{6}{\hertz}$ das magnetische Moment bestimmt, ergibt sich mit
+$\mu = \input{build/mu_präz_3.tex}$ ein stark ausreißendes Ergebnis. Alternativ lässt sich durch die
+Annahme, dass der reale Wert $\mu = \input{build/mu_präz_2.tex}$ entspricht, eine plausible Drehrate
+$\nu = \input{build/f_präz_3.tex}$ ermitteln. Diese liegt außerhalb des erlaubten Frequenzbereichs und ist somit
+eigentlich ungeeignet. 
+
+Zusammenfassend fällt es schwer, eine der Methoden als allgemein überlegen zu bezeichnen. Unter den gegebenen Bedingungen
+erzielt der statische Messansatz unter Einwirken der Gravitation das exakteste Ergebnis. Die beiden dynamischen
+Herangehensweisen könnten unter anderen Umständen aber ebenfalls in der Lage sein, Werte äquivalenter oder sogar
+höherer Qualität zu liefern.

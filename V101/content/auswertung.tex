@@ -1,0 +1,210 @@
+% Messwerte: Alle gemessenen Größen tabellarisch darstellen
+% Auswertung: Berechnung geforderter Ergebnisse mit Schritten/Fehlerformeln/Erläuterung/Grafik (Programme)
+\section{Auswertung}
+\label{sec:auswertung}
+
+\subsection{Gerätekonstanten}
+
+\subsubsection{Winkelrichtgröße}
+
+Nach \eqref{eqn:richtgröße} folgt $D = \input{build/D.tex}$ als Ergebnis aus den Daten in Tabelle \ref{tab:mess_statisch}.
+
+\begin{table}
+	\centering
+	\captionsetup{width=0.8\linewidth}
+	\caption{Ergebnisse der statischen Messmethode mit einem Achsenabstand von
+			 $r = \protect\input{build/a_statisch.tex}$ zur Bestimmung der Winkelrichtgröße.}
+	\input{build/mess_tab_statisch.tex}
+	\label{tab:mess_statisch}
+\end{table}
+
+Dieser Wert setzt sich sich aus dem Mittelwert $\overline{x}$ mit der Rechenvorschrift
+\begin{equation*}
+	\overline{x} = \pfrac{1}{N \,} \sum_{n=1}^N x_n
+	\label{eqn:mittel}
+\end{equation*}
+und der Standardabweichung $\symup{\Delta}\overline{x}$ zusammen, welche sich über den Ausdruck
+\begin{equation*}
+	(\symup{\Delta}\overline{x})^2 = \pfrac{1}{N(N-1)} \sum_{n=1}^N (x_n \! - \overline{x})^2
+	\label{eqn:std}
+\end{equation*}
+ermitteln lässt. Unter Python \cite{python} kann dies mithilfe von NumPy \cite{numpy} durch die
+Funktionen \verb+numpy.mean+ und \verb+numpy.std+ automatisiert werden.
+
+\subsubsection{Eigenträgheitsmoment}
+
+\begin{table}[H]
+	\centering
+	\caption{Maße der verwendeten Testmassen mit Messgeräteabweichung.}
+	\input{build/dim_tab_test.tex}
+	\label{tab:dim_test}
+\end{table}
+
+Aufgrund der aus Tabelle \ref{tab:dim_test} entnommenen Messergebnisse wird von identischen Testmassen
+mit $m = \input{build/m.tex}$ ausgegangen. Es handelt sich also um Zylinder, welche durch die Längen
+$R = 17\hspace{-0.15ex},\hspace{-0.3ex}4 \hspace{0.375ex}\unit{\milli\meter}$ und $h = \input{build/h.tex}$
+vollständig beschrieben sind. Im Aufbau~stehen deren Rotationsachsen senkrecht zur Symmetrie, über
+Formel~\eqref{eqn:zylinder_senk} lässt sich demnach $I_0 = \input{build/I_0.tex}$ bestimmen. Hier wird die
+Abweichung $\symup{\Delta}f$ unter Anwendung der Gaußschen Fehlerfortpflanzung
+\begin{equation*}
+	(\symup{\Delta}f)^2 = \sum_{n=1}^N
+	\left( \! \pfrac{\partial^{\!} f}{\partial x_{\raisebox{0.2ex}{$\scriptstyle{n}$}}} \!
+	\right)^{\!\!\! 2} \!\! (\symup{\Delta}x_{\raisebox{0.2ex}{$\scriptstyle{n}$}})^2
+	\label{eqn:gauss}
+\end{equation*}
+bestimmt. Für die nachfolgenden Abschnitte lässt sich dieser Schritt durch Einsatz von uncertainties~\cite{uncertainties}
+berücksichtigen. Bei Verschiebung entlang der eingespannten Stange ermittelt sich das Trägheitsmoment
+$I_{\hspace{-0.3ex}Z}$ eines einzelnen Zylinders durch \eqref{eqn:steiner} nach Steiner. Das Gesamtträgheitsmoment $I$
+des Messaufbaus entspricht nun der Summe des kostanten Eigenträgheitsmoments $I_{\hspace{-0.3ex}D}$ mit denen der
+beiden Zylindermassen. Quadrieren von und anschließendes Einsetzen in Gleichung~\eqref{eqn:period} liefert die Beziehung
+\begin{equation*}
+	T^{\hspace{0.15ex}2} = 4\pi^2 \pfrac{I}{\hspace{-0.15ex}D\hspace{0.15ex}} =
+	4\pi^2 \pfrac{1}{\hspace{-0.15ex}D\hspace{0.15ex}}
+	\left( 2I_{\hspace{-0.3ex}Z} + I_{\hspace{-0.3ex}D} \right) =
+	8\pi^2 \pfrac{1}{\hspace{-0.15ex}D\hspace{0.15ex}} \, ma^2 \! +
+	4\pi^2 \pfrac{1}{\hspace{-0.15ex}D\hspace{0.15ex}}
+	\left( 2I_0 + I_{\hspace{-0.3ex}D} \right)
+\end{equation*}
+als Ansatz. Dieser stellt so einen linearen Zusammenhang zwischen Periodendauer $T^{\hspace{0.15ex}2}$ und
+zugehörigem Achsenabstand $a^2$ her. Tabelle \ref{tab:mess_dynamisch} enthält die entsprechenden Messungen.
+
+\vfill
+
+\begin{table}
+	\centering
+	\captionsetup{width=0.775\linewidth}
+	\caption{Ergebnisse der dynamischen Messmethode mit einer Auslenkung von
+			 $\varphi = \protect\input{build/phi_dynamisch.tex}$ zur linearen Regressionsrechnung.}
+	\input{build/mess_tab_dynamisch.tex}
+	\label{tab:mess_dynamisch}
+\end{table}
+
+\vfill\newpage
+
+Entlang der aufgenommenen Werte wird eine Modellfunktion der Form
+\begin{equation*}
+	T^{\hspace{0.15ex}2} \hspace{-0.15ex} = p\hspace{0.15ex}a^2 \hspace{-0.15ex} + q
+\end{equation*}
+zur linearen Regression angewendet. Diese beschreibt eine Gerade $y = px + q$ mit
+\begin{align*}
+	p = \pfrac{\overline{x\hspace{0.15ex}y\hspace{0.15ex}} - \overline{x} \: \overline{y\hspace{0.15ex}}}
+	{\overline{x^2} - \overline{x}^{\hspace{0.15ex}2}} && q = \overline{y\hspace{0.15ex}} - p \overline{x}
+	\label{eqn:regression}
+\end{align*}
+als zugehörige Parameter. Durch Koeffizientenvergleich kann über
+\begin{equation*}
+	q = 4\pi^2 \pfrac{1}{\hspace{-0.15ex}D\hspace{0.15ex}} \left( 2I_0 + I_{\hspace{-0.3ex}D} \right)
+\end{equation*}
+das Eigenträgheitsmoment der Drillachse mit der bekannten Winkelrichtgröße zu
+\begin{equation*}
+	I_{\hspace{-0.3ex}D} = \pfrac{1}{\raisebox{-0.3ex}{$4\pi^2\hspace{-0.15ex}$}} \hspace{0.15ex} D\hspace{0.05ex}q - 2I_0
+\end{equation*}
+bestimmt werden. Abbildung \ref{fig:plot} reproduziert die resultierende Ausgleichsgerade.
+
+\begin{figure}[H]
+	\includegraphics{build/plot.pdf}
+	\caption{Quadrierte Messwerte mit passender Gerade aus der linearen Regression.
+			 Die Grafik wird mittels Matplotlib \cite{matplotlib} erstellt.}
+	\label{fig:plot}
+\end{figure}
+
+Die Funktion \verb+numpy.polyfit+ aus der Bibliothek NumPy \cite{numpy} dient zur Berechnung der gesuchten
+Regressionsparameter, deren Abweichung aus den jeweiligen Diagonalelementen der Kovarianzmatrix ermittelt wird.
+Mit den zuvor definierten Faktoren
+\begin{align*}
+	p = \input{build/p_dynamisch} && q = \input{build/q_dynamisch}
+\end{align*}
+ist eine optimale Näherung an die Messdaten gegeben. Daraus ergibt sich schließlich der Wert
+$I_{\hspace{-0.3ex}D} = \input{build/I_D.tex}$ als weitere Apparatekonstante.
+
+\subsection{Einfache Körper}
+
+Zur Untersuchung der in Tabelle \ref{tab:dim_körper} charakterisierten Körper fällt die Drehachse mit deren
+Symmetrieachsen zusammen. Indem $I_{\hspace{-0.3ex}D}$ von \eqref{eqn:träge_periode} subtrahiert wird, lässt
+sich dann aus der Schwingungsdauer experimentell das Trägheitsmoment bestimmen.
+
+\begin{table}
+	\centering
+	\caption{Maße der verwendeten Körper mit Messgeräteabweichung.}
+	\input{build/dim_tab_körper.tex}
+	\label{tab:dim_körper}
+\end{table}
+
+Um einen Vergleich zu ermöglichen werden zunächst die theoretischen Werte ermittelt. Nach Formel~\eqref{eqn:kugel}
+beträgt $I'_{\hspace{-0.3ex}H\hspace{-0.15ex}K} = \input{build/I_kgl_theo.tex}$ für die Holzkugel. Analog dazu folgt
+$I'_{\hspace{-0.3ex}H\hspace{-0.15ex}Z} = \input{build/I_zln_theo.tex}$ aus \eqref{eqn:zylinder_symm} im Falle
+des Holzzylinders.
+
+\begin{table}
+	\centering
+	\captionsetup{width=0.65\linewidth}
+	\caption{Messwerte der Schwingungsdauer für die Holzkörper bei
+			 $\varphi = \protect\input{build/phi_dynamisch.tex}$ als Auslenkung.}
+	\input{build/period_tab_körper.tex}
+	\label{tab:period_körper}
+\end{table}
+
+Aus den gemessenen Schwingungszeiten in Tabelle \ref{tab:period_körper} ergeben sich
+$T_{\hspace{-0.15ex}H\hspace{-0.15ex}K} = \input{build/T_kgl.tex}$ und
+$T_{\hspace{-0.15ex}H\hspace{-0.15ex}Z} = \input{build/T_zln.tex}$ als gemittelte Ergebnisse. Unter Berücksichtigung
+des zuvor bestimmten Eigenträgheitsmoments liefern diese Werte
+$I_{\hspace{-0.3ex}H\hspace{-0.15ex}K} = \input{build/I_kgl_exp.tex}$ und
+$I_{\hspace{-0.3ex}H\hspace{-0.15ex}Z} = \input{build/I_zln_exp.tex}$ als Resultate. Die Ergebnisse
+müssen allerdings verworfen werden, da physikalisch keine negativen Trägheitsmomente auftreten können. Auf die
+Gültigkeit dieser Messungen wird genauer in der \hyperref[sec:diskussion]{Diskussion} eingegangen.
+
+\newpage
+
+\subsection{Modellfigur}
+
+Wie in Tabelle \ref{tab:mess_puppe} aufgeführt, werden die Durchmesser $d$ der Körperteile je mehrfach~entlang deren gesamter
+Länge gemessen. Anhand dieser leiten sich anschließend die gemittelten Werte zur zylindrischen Approximation ab.
+
+\begin{table}[H]
+	\centering
+	\caption{Messwerte der zylindrisch genäherten Körperteile der Puppe.}
+	\input{build/mess_tab_puppe.tex}
+	\label{tab:mess_puppe}
+\end{table}
+
+Mit den so beschriebenen Zylindern wird für Tabelle \ref{tab:dim_puppe} über den Volumenanteil auch die entsprechende Masse
+ermittelt.
+
+\begin{table}
+	\centering
+	\captionsetup{width=0.875\linewidth}
+	\caption{Gemittelte Maße der Körperteile mit $m = \protect\input{build/m_puppe.tex}$ als Gesamtmasse und
+			 $V = \protect\input{build/V_puppe.tex}$ als Gesamtvolumen. Daraus lässt sich die Dichte der Puppe
+			 zu $\rho = \protect\input{build/rho_puppe.tex}$ bestimmen.}
+	\input{build/dim_tab_puppe.tex}
+	\label{tab:dim_puppe}
+\end{table}
+
+In der theoretischen Näherung liegt die Symmetrieachse von Kopf und Torso für beide Haltungen der Puppe auf der Drehachse,
+es kann also einfach \eqref{eqn:zylinder_symm} verwendet werden. Bei der ersten Pose stehen die Beine ebenfalls parallel zur
+Rotation mit einer seitlichen Verschiebung von $R_\textsc{Beine}$ zur Achse. Die Arme sind dagegen orthogonal zur Drehung
+vom Körper gestreckt, über Ausdruck \eqref{eqn:zylinder_senk} berechnet sich bei einem seitlichen Achsenabstand entsprechend
+der Summe von $R_\textsc{Torso}$ und der halben Höhe $h_\textsc{\hspace{-0.15ex}Arme}$ ihr Trägheitsmoment.~Es ergibt sich
+daraus $I'_1 = \input{build/I_1_theo.tex}$ für die gesamte Figur.
+
+Wird nun die zweite Haltung angenommen, bleiben alle bestehenden Distanzen erhalten. Durch die veränderte Orientierung
+der Beine kommt allerdings noch eine Verschiebung der Achse um deren halbe Höhe $h_\textsc{Beine}$ nach vorn hinzu.
+Über den Hypotenusensatz nach Pythagoras ergibt sich der angepasste Gesamtabstand, welcher in den Steinerschen
+Satz~\eqref{eqn:steiner} eingesetzt werden muss. Das Trägheitsmoment lässt sich damit schließlich zu
+$I'_2 = \input{build/I_2_theo.tex}$ bestimmen.
+
+\begin{table}
+	\centering
+	\captionsetup{width=0.725\linewidth}
+	\caption{Messwerte der Schwingungsdauer für zwei Körperhaltungen unter je zwei Auslenkungen.}
+	\input{build/period_tab_puppe.tex}
+	\label{tab:period_puppe}
+\end{table}
+
+Aus den in Tabelle \ref{tab:period_puppe} nachgehaltenen Periodendauern ergeben sich für beide Posen die
+jeweiligen Zeiten $T_1 = \input{build/T_1.tex}$ und $T_2 = \input{build/T_2.tex}$ als mittlere Messungen, mit deren Hilfe
+die experimentelle Bestimmung der Trägheitsmomente unter Verwendung von Ausdruck \eqref{eqn:träge_periode} erfolgt. Dieses
+Vorgehen liefert so $I_1 = \input{build/I_1_exp.tex}$ und $I_2 = \input{build/I_2_exp.tex}$ als resultierende Werte.
+Wie zuvor erwähnt dürfen keine negativen Ergebnisse auftreten. Ein sinnvoller Korrekturansatz folgt.
+\enlargethispage{\baselineskip}\newpage
+

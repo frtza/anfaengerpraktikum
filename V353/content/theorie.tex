@@ -1,0 +1,237 @@
+% Titel: Ziel des Versuchs
+% Theorie: Physikalische Grundlagen von Versuch/Messverfahren, Gleichungen ohne Herleitung knapp erklären
+\section{Theorie}
+\label{sec:theorie}
+
+\subsection{Relaxationsvorgänge}
+
+Allgemein bezeichnen Relaxationserscheinungen das nichtoszillatorische Einstellen des
+Gleichgewichtszustandes eines physikalischen Systems. Unter der Annahme, dass sich die
+Änderungsrate dabei proportional zur Abweichung von $A(t)$ zum asymptotischen stationären
+Endzustand $A_{\raisebox{0.25ex}{\(\scriptscriptstyle{\infty}\)}\!\!}$ verhält, lässt sich die Gleichung
+\begin{equation}
+	\pfrac{\symup dA}{\symup dt} = c \hspace{0.3ex} (A(t) -
+	A_{\raisebox{0.25ex}{$\scriptscriptstyle{\infty}$}\!}) \label{eqn:rate_allgemein}
+\end{equation}
+mit der Konstante $c$ aufstellen. Integration von \eqref{eqn:rate_allgemein} über die
+Zeitpunkte $0$ bis $t$ liefert
+\begin{equation}
+	\int\limits_{A_0}^{\raisebox{-0.25ex}{$\scriptstyle{A(t)}$}} \!\!
+	\pfrac{\symup dA}{\hspace{0.15ex}A - A_{\raisebox{0.25ex}{$\scriptscriptstyle{\infty}$}}} = \!\!
+	\int\limits_0^t \! c \, \symup dt' \stepcounter{equation}\tag{2a}
+\end{equation}
+als entsprechende Operationsvorschrift sowie die äquivalente Formulierung
+\begin{equation}
+	\ln \pfrac{A(t) - A_{\raisebox{0.25ex}{$\scriptscriptstyle{\infty}$}}}{A_0 -
+	A_{\raisebox{0.25ex}{$\scriptscriptstyle{\infty}$}}} = c \hspace{0.15ex} t \tag{2b}
+\end{equation}
+für deren Ergebnis. Durch Auflösen nach der Größe $A(t)$ ergibt sich damit der Ausdruck
+\begin{equation}
+	A(t) = A_{\raisebox{0.25ex}{$\scriptscriptstyle{\infty}$}\!} + \hspace{0.15ex}
+	(A_0 - A_{\raisebox{0.25ex}{$\scriptscriptstyle{\infty}$}\!}) \hspace{0.15ex}
+	\exp (c \hspace{0.15ex} t) \tag{2c} \label{eqn:relax_allgemein}
+\end{equation}
+zur Beschreibung des Systems. Aus \eqref{eqn:relax_allgemein} folgt noch $c < 0$, sodass $A(t)$
+beschränkt ist.
+
+\subsection{Kondensatorladung}
+
+Mit dem Ladungsträgerstrom $I$ und der lokalen Ladung $Q$ gilt die Beziehung
+\begin{equation}
+	\symup dQ = - I \symup dt
+	\label{eqn:ladung}
+\end{equation}
+an jedem Punkt in der Schaltung. Nach dem ohmschen Gesetz kann außerdem
+\begin{equation}
+	U \hspace{-0.025ex} = RI
+	\label{eqn:ohm}
+\end{equation}
+geschrieben werden, wobei die Spannung $U$ am Widerstand $R$ abfällt. Daraus folgt dann
+\begin{equation}
+	U \hspace{-0.025ex} = \pfrac{Q}{C} = RI = -R \,\pfrac{\symup dQ}{\symup dt}
+	\stepcounter{equation}\tag{5a}
+\end{equation}
+als Differentialgleichung am Kondensator der Kapazität $C$. Umgeschrieben in die Form
+\begin{equation}
+	\pfrac{\symup dQ}{\symup dt} = -\pfrac{1}{RC} \, Q
+	\tag{5b}
+\end{equation}
+entspricht dies nach \eqref{eqn:relax_allgemein} dem Zusammenhang
+\begin{equation}
+	Q(t) = Q_{\raisebox{0.25ex}{$\scriptscriptstyle{\infty}$}\!} + \hspace{0.15ex}
+	(Q_0 - Q_{\raisebox{0.25ex}{$\scriptscriptstyle{\infty}$}\!}) \hspace{0.15ex}
+	\exp \! \left(-\pfrac{1}{RC} \, \hspace{0.15ex} t\right)
+	\label{eqn:relax_kondensator}
+\end{equation}
+für den zeitlichen Verlauf der Kondensatorladung.
+
+\subsubsection{Entladevorgang}
+
+Bei der Entladung fällt die anfängliche Ladung $Q_0$ gegen
+$Q_{\raisebox{0.25ex}{$\scriptscriptstyle{\infty}$}\!} = 0$ ab. Laut \eqref{eqn:relax_kondensator}
+ist dann
+\begin{align}
+	Q(t) &= Q_0 \exp \! \left(-\pfrac{1}{RC} \, \hspace{0.15ex} t\right)
+	\stepcounter{equation}\tag{7a}
+	\label{eqn:entladung_ladung} \\
+	\intertext{gegeben. Gleichzeitig lässt sich mit $Q = CU$ und $Q_0 = CU_{\hspace{-0.15ex}0}$ der Ausdruck}
+	U\hspace{-0.025ex}(t) &= U_{\!0} \exp \! \left(-\pfrac{1}{RC} \, \hspace{0.15ex} t\right)
+	\tag{7b}
+	\label{eqn:entladung_spannung}
+\end{align}
+für die Kondensatorspannung aufstellen.
+
+\subsubsection{Aufladevorgang}
+
+Anders als zuvor ist der Kondensator mit $Q_0 = 0$ zunächst entladen. Unter der angelegten
+Gleichspannung $U_{\hspace{-0.15ex}0}$ gilt
+$Q_{\raisebox{0.25ex}{$\scriptscriptstyle{\infty}$}\!} = CU_{\hspace{-0.15ex}0}$ als aufgeladener Endzustand.
+Einsetzen in \eqref{eqn:relax_kondensator} liefert
+\begin{align}
+	Q(t) &= CU_{\hspace{-0.15ex}0} 
+	\!\left(\!1 - \exp \! \left(-\pfrac{1}{RC} \, \hspace{0.15ex} t\right) \!\right)
+	\stepcounter{equation}\tag{8a}
+	\label{eqn:aufladung_ladung} \\
+	\intertext{zur Beschreibung der Ladung. Weiter definiert der Term}
+	U\hspace{-0.025ex}(t) &= U_{\!0}
+	\!\left(\!1 - \exp \! \left(-\pfrac{1}{RC} \, \hspace{0.15ex} t\right) \!\right)
+	\tag{8b}
+	\label{eqn:aufladung_spannung}
+\end{align}
+den entsprechenden Spannungsverlauf.
+
+\subsubsection{Zeitkonstante}
+
+Mit $\tau = RC$ ist die charakteristische Zeitkonstante des RC\hspace{0.15ex}-Kreises bezeichnet.
+Diese bemisst die Geschwindigkeit, mit welcher das System gegen den Endzustand strebt.
+
+\newpage
+
+\subsection{Periodische Auslenkung}
+
+Wird nun stattdessen eine periodische Generatorspannung der Gestalt
+$U_{\hspace{-0.025ex}\text{in}\!} = U_{\hspace{-0.025ex}0} \cos(\omega t)$ mit einer Kreisfrequenz
+$\omega = 2\pi \hspace{0.15ex} \nu$ angelegt, bietet sich die Durchführung einer komplexen
+Wechselstromrechnung an.
+
+\subsubsection{Impedanzen}
+
+Mit der imaginären Einheit $i \mkern1mu$ kann die Gesamtimpedanz der Schaltung als
+\begin{equation}
+	Z_{\hspace{-0.15ex}RC} = Z_{\hspace{-0.15ex}R} + Z_C = R + \pfrac{1}{i \mkern1mu \omega \hspace{0.15ex} C}
+	\label{eqn:impedanz}
+\end{equation}
+zusammengefasst werden. Dabei entspricht der reale Term $Z_{\hspace{-0.15ex}R}$ dem verbauten ohmschen
+Wirkwiderstand. Der Blindwiderstand des Kondensators ist mit $Z_C$ \mbox{angegeben. Weiter gilt}
+\begin{equation}
+	U \hspace{-0.025ex} = ZI
+	\label{eqn:ohm_komplex}
+\end{equation}
+als verallgemeinerter Zusammenhang zwischen Spannung, Impedanz und Stromstärke. Speziell folgen
+aus \eqref{eqn:ohm_komplex} die Proportionalitäten
+$U_{\hspace{-0.025ex}\text{in}\!} \propto Z_{\hspace{-0.15ex}RC}\hspace{0.15ex}$ für die
+Eingangsspannung und $U_{\hspace{-0.025ex}\text{out}\!} \propto Z_C\hspace{0.15ex}$ für jene Spannung,
+die am Kondensator abfällt. Durch \eqref{eqn:impedanz} lässt sich mit
+\begin{equation}
+	H = \pfrac{U_{\hspace{-0.025ex}\text{out}}}{U_{\hspace{-0.025ex}\text{in}\!}} = 
+	\pfrac{Z_C}{Z_{\hspace{-0.15ex}RC}} = \pfrac{1}{1 + i \mkern1mu \omega R \hspace{0.15ex} C}
+	\label{eqn:transmission}
+\end{equation}
+schließlich das Übertragungsverhältnis aufstellen. 
+
+\subsubsection{Amplitudenverlauf}
+
+Aus Gleichung \eqref{eqn:transmission} ist die betragsmäßige Transmission direkt mit dem Ausdruck
+\begin{equation}
+	\left|H\hspace{0.2ex}\right| =
+	\left|\pfrac{U_{\hspace{-0.025ex}\text{out}}}{U_{\hspace{-0.025ex}\text{in}\!}}\right| = 
+	\pfrac{\left|Z_C\right|}{\left|Z_{\hspace{-0.15ex}RC}\right|} =
+	\pfrac{1}{\sqrt{1 + \omega^2 \hspace{-0.2ex} R^2 C^2}}
+\end{equation}
+bestimmt. Die Amplitude $U\hspace{-0.025ex}$ der Kondensatorspannung verläuft dann nach der \mbox{Beziehung}
+\begin{equation}
+	U\hspace{-0.025ex}(\omega) = \pfrac{U_{\hspace{-0.025ex}0}}{\sqrt{1 + \omega^2 \hspace{-0.2ex} R^2 C^2}}
+	\label{eqn:amplitude_frequenz}
+\end{equation}
+in Abhängigkeit zur Kreisfrequenz $\omega$. Demnach bildet der RC\hspace{0.15ex}-Kreis einen Tiefpass.
+
+\subsubsection{Phasenverschiebung}
+
+Konjugiertes Ergänzen von \eqref{eqn:transmission} zeigt, dass zusätzlich die Proportionalitätsrelation
+\begin{equation}
+	H \hspace{-0.15ex} \propto 1 - \hspace{0.15ex} i \mkern1mu \omega R \hspace{0.15ex} C
+	\label{eqn:proportion}
+\end{equation}
+erfüllt ist. Indem aus der Gaußschen Zahlenebene der geometrische Zusammenhang
+\begin{equation}
+	\tan(\varphi) = \pfrac{\sin(\varphi)}{\cos(\varphi)}
+	= \pfrac{\operatorname{Im}(\hspace{-0.1ex}H\hspace{0.1ex})}{\operatorname{Re}(\hspace{-0.1ex}H\hspace{0.1ex})}
+	= - \hspace{0.15ex} \omega R \hspace{0.15ex} C
+	\label{eqn:phase_tangens}
+\end{equation}
+entnommen wird, lässt sich so die Phase $\varphi = \operatorname{arg}(\hspace{-0.1ex}H\hspace{0.1ex})$
+zwischen $U_{\hspace{-0.025ex}\text{in}\!}$ und $U_{\hspace{-0.025ex}\text{out}\!}$ als
+\begin{equation}
+	\varphi(\omega) = - \arctan ( \omega R \hspace{0.15ex} C \hspace{0.1ex})
+	\label{eqn:phase}
+\end{equation}
+definieren. Schließlich folgt nach Einsetzen von \eqref{eqn:phase_tangens} in \eqref{eqn:amplitude_frequenz} noch
+\begin{equation}
+	U\hspace{-0.025ex}(\varphi) = \pfrac{\cos(\varphi)}{\sqrt{\cos^2(\varphi) + \sin^2(\varphi)}}
+	\, U_{\hspace{-0.025ex}0} = \cos(\varphi) \, U_{\hspace{-0.025ex}0}
+	\label{eqn:amplitude_phase}
+\end{equation}
+als phasenabhängiger Ausdruck für die Amplitudenspannung. 
+
+\subsection{Integrationsanwendung}
+
+Bei Eingangsspannungen mit $\omega \gg \tau^{-1}$ läuft $Z_C$ gegen Null. Dann kann die Näherung
+\begin{equation}
+	U_{\hspace{-0.025ex}\text{in}\!} = ZI = Z_{\hspace{-0.15ex}R} I = RI = R \, \pfrac{\symup dQ}{\symup dt} =
+	RC \: \pfrac{\symup dU_{\hspace{-0.025ex}\text{out}\!}}{\symup dt}
+	\stepcounter{equation}\tag{18a}
+\end{equation}
+aus \eqref{eqn:ohm_komplex} hergeleitet werden. Integrieren von $0$ bis $t$ liefert die Beziehung
+\begin{equation}
+	U_{\hspace{-0.025ex}\text{out}\!}= \pfrac{1}{\hspace{-0.15ex}RC\hspace{0.15ex}} \!
+	\int\limits_0^t \! U_{\hspace{-0.025ex}\text{in}\!} \: \symup dt'
+	\tag{18b}
+	\label{eqn:integral}
+\end{equation}
+für den RC\hspace{0.15ex}-Kreis. Dieser beschreibt somit einen Integrator hochfrequenter Signale.
+
+\newpage
+
+\subsection{Fehlerrechnung}
+
+Um die Abweichung der Messgrößen zu untersuchen, werden noch einige weitere Formeln benötigt.
+Die Rechenvorschrift für den Mittelwert $\overline{x}$ ist mit
+\begin{equation}
+	\overline{x} = \pfrac{1}{N \,} \sum_{n=1}^N x_n
+	\label{eqn:mittel}
+\end{equation}
+gegeben. Zur Bestimmung der Standardabweichung $\symup{\Delta}\overline{x}$ kann
+\begin{equation}
+	(\symup{\Delta}\overline{x})^2 = \pfrac{1}{N(N-1)} \sum_{n=1}^N (x_n \! - \overline{x})^2
+	\label{eqn:std}
+\end{equation}
+verwendet werden. Durch die Gaußsche Fehlerfortpflanzung
+\begin{equation}
+	(\symup{\Delta}f)^2 = \sum_{n=1}^N
+	\left( \! \pfrac{\partial^{\!} f}{\partial x_{\raisebox{0.2ex}{$\scriptstyle{n}$}}} \!
+	\right)^{\!\! 2} \!\! (\symup{\Delta}x_{\raisebox{0.2ex}{$\scriptstyle{n}$}})^2
+	\label{eqn:gauss}
+\end{equation}
+ist die Abweichung $\symup{\Delta}f$ für von fehlerbehafteten Werten $x_n \!$ abhängige
+Größen $\hspace{-0.2ex} f \hspace{0.2ex}$ definiert.
+
+\subsection{Lineare Regression}
+
+Entlang der linear abhängigen Messgrößen $(x_n,y_n)$ für $n = 1,\dotsc,\hspace{-0.1ex}N\hspace{0.1ex}$
+lassen sich über
+\begin{align}
+	m = \pfrac{\overline{x\hspace{0.15ex}y\hspace{0.15ex}} - \overline{x} \: \overline{y\hspace{0.15ex}}}
+	{\overline{x^2} - \overline{x}^{\hspace{0.15ex}2}} && b = \overline{y\hspace{0.15ex}} - m \overline{x}
+	\label{eqn:regression}
+\end{align}
+die Parameter der Ausgleichsgerade $y = mx + b$ berechnen.

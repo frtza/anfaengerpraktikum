@@ -1,0 +1,145 @@
+% Messwerte: Alle gemessenen Größen tabellarisch darstellen
+% Auswertung: Berechnung geforderter Ergebnisse mit Schritten/Fehlerformeln/Erläuterung/Grafik (Programme)
+\section{Auswertung}
+\label{sec:auswertung}
+
+Im folgenden Abschnitt wird die Fehlerrechnung mithilfe der Bibliothek uncertainties~\cite{uncertainties} unter Python
+\cite{python} automatisiert. Grafische Darstellungen lassen sich mittels Matplotlib~\cite{matplotlib} erstellen, während
+NumPy~\cite{numpy} mittels der Funktion \verb+numpy.polyfit+ die lineare Regression durchführt. Abweichungen werden
+dabei aus der Kovarianzmatrix entnommen.
+
+\subsection{Apparatur}
+
+\begin{figure}[H]
+	\vspace{-1em}
+	\includegraphics{build/plot_feld.pdf}
+	\vspace{-4ex}
+	\captionsetup{width=0.86\linewidth}
+	\caption{Magnetfeldstärke und ortsbedingte Änderungsrate mit $N = \num{195}$, \newline
+			 $d = \qty{0.138}{\meter}$, $R = \qty{0.109}{\meter}$ und $I = \qty{1}{\ampere}$ als Parameter der Apparatur.}
+	\label{fig:feld}
+\end{figure}
+
+Anhand von Abbildung \ref{fig:feld} lässt sich graphisch verifizieren, dass die Feldstärke \eqref{eqn:feld_helmholtz} zwischen
+den beiden Spulen mit $N = \num{195}$, $d = \qty{0.138}{\meter}$ und $R = \qty{0.109}{\meter}$ weitestgehend konstant bleibt.
+Auch der Feldgradient entlang der Symmetrieachse, welcher sich nach \eqref{eqn:grad_spule} berechnet, ist in diesem
+Bereich vernachlässigbar. Es wird daher die Annahme getroffen, dass sich das Magnetfeld, dessen Wirkung hier weiterführend
+ausgenutzt werden soll, homogen verhält und über Term~\eqref{eqn:feld_helmholtz} bei $x = 0$ bestimmen lässt. Mit
+$I = \qty{1}{\ampere}$ folgt dann $B = 1\hspace{-0.1ex},\hspace{-0.3ex}356 \cdot\hspace{-0.1ex} \qty{e-3}{\tesla}$ als
+Faktor, der anschließend zur Ermittlung der magnetischen Flussdichte bei entsprechenden Vielfachen dieser Stromstärke dient.
+
+Für die dynamischen Messmethoden wird außerdem das Trägheitsmoment des Testkörpers benötigt. Dieser wird als
+Vollkugel homogener Dichte approximiert, womit sich
+\begin{equation*}
+	J = \pfrac{2}{\raisebox{0.15ex}{$5$}} M R^2
+\end{equation*}
+ergibt. Mit Radius $R = \qty{2.5}{\centi\meter}$ und Masse $M = \qty{150}{\gram}$ folgt aus diesem Ausdruck der Wert
+$J = 3,\hspace{-0.6ex}75 \cdot\hspace{-0.1ex} \qty{e-5}{\kilo\gram\meter\squared}$ als Trägheitsmoment.
+
+\subsection{Gravitation}
+
+Die Messungen aus Tabelle \ref{tab:grav} werden in Abbildung \ref{fig:grav} gegeneinander aufgetragen. Ebenfalls
+dargestellt ist die entsprechende lineare Regressionsfunktion.
+
+\begin{table}[H]
+	\centering
+	\caption{Messdaten zur statischen Methode.}
+	\input{build/tab_grav.tex}
+	\label{tab:grav}
+\end{table}
+\begin{figure}[H]
+	\vspace{-1em}
+	\includegraphics{build/plot_grav.pdf}
+	\vspace{-4ex}
+	\caption{Datenpunkte mit linearer Näherungskurve.}
+	\label{fig:grav}
+\end{figure}
+
+Um eine möglichst gute Übereinstimmung mit den aufgenommenen Daten zu erzielen, werden beide Parameter der Gerade
+$y = ax + b$ genutzt. Die konstante Verschiebung fällt zwar bei der weiteren Verarbeitung weg, dient hier aber
+als zusätzlicher Freiheitsgrad.
+
+Mit den Diagonalelementen der Kovarianzmatrix liefert dieser Regressionsansatz
+\begin{align*}
+	a = \input{build/a_grav.tex} && b = \input{build/b_grav.tex}
+\end{align*}
+als fehlerbehaftete Koeffizienten. Vergleich mit \eqref{eqn:dreh_gleichgewicht_skalar} lässt den Zusammenhang
+\begin{equation*}
+	a = \pfrac{\mu}{\raisebox{0.6ex}{$mg$}}
+\end{equation*}
+erkennen. Daraus folgt mit der punktförmig genäherten Testmasse von $m = \qty{1.4}{\gram}$ der~Wert
+$\mu = \input{build/mu_grav}$ für das magnetische Moment des kugelförmigen Dipols.
+
+\subsection{Schwingung}
+
+Analoges Vorgehen produziert die in Abbildung \ref{fig:schw} einsehbare graphische Darstellung. Es werden
+nun allerdings bereits modifizierte Messdaten aus Tabelle \ref{tab:schw} in Form der quadrierten Periodendauer
+gegen den Kehrwert der magnetischen Flussdichte angezeigt.
+
+\begin{figure}[H]
+	\includegraphics{build/plot_schw.pdf}
+	\vspace{-4ex}
+	\caption{Datenpunkte mit linearer Näherungskurve.}
+	\label{fig:schw}
+\end{figure}
+
+Durch die auf diese Weise erhaltenen Parameter der linearen Regressionsrechnung
+\begin{align*}
+	a = \input{build/a_schw.tex} && b = \input{build/b_schw.tex}
+\end{align*}
+werden die modellspezifischen Fehlerquadrate minimal.
+
+\begin{table}[H]
+	\centering
+	\caption{Messdaten zur dynamischen Oszillatormethode.}
+	\input{build/tab_schw.tex}
+	\label{tab:schw}
+\end{table}
+
+Aus Gleichung~\eqref{eqn:schwingung} lässt sich über die Schwingunsdauer eine Beziehung der Form
+\begin{equation*}
+	a = \pfrac{4\pi^2J}{\raisebox{0.6ex}{$\mu$}}
+\end{equation*}
+herleiten. Mithilfe der in Tabelle \ref{tab:schw} ersichtlichen Messungen wird das magnetische Moment dann
+zu $\mu = \input{build/mu_schw.tex}$ bestimmt.
+
+\subsection{Präzession}
+
+Wie zuvor werden die Messwerte in Tabelle \ref{tab:präz} zur Ausgleichsrechnung herangezogen.
+
+\begin{table}[H]
+	\centering
+	\caption{Messdaten zur dynamischen Kreiselmethode.}
+	\input{build/tab_präz.tex}
+	\label{tab:präz}
+\end{table}
+
+\begin{figure}[H]
+	\includegraphics{build/plot_präz.pdf}
+	\vspace{-4ex}
+	\caption{Gewertete Datenpunkte mit entsprechenden linearen Näherungskurven.}
+	\label{fig:präz}
+\end{figure}
+
+Hier findet die reziproke Umlaufzeit Verwendung, indem diese gegen die Magnetfeldstärke aufgetragen wird. Für den
+Steigungsparameter lässt sich über \eqref{eqn:präzession} der Ausdruck
+\begin{equation*}
+	a = \pfrac{\mu}{2\pi L_0}
+\end{equation*}
+formulieren. Vorausgesetzt wird eine Rotationsfrequenz von $\nu = \qty{6}{\hertz}$ mit einem Wert von
+$L_0 = \input{build/L_0.tex}$ als Drehimpuls. Die Verifikation mittels der Stroboskopvorrichtung lässt für die
+Stromstärken $I = \qty{1.4}{\ampere}$ und $I = \qty{3.4}{\ampere}$ auf eine besonders hohe Genauigkeit schließen.
+Abbildung~\ref{fig:präz} hebt diese Daten mit der zugehörigen Schnittgerade durch eine höhere Opazität hervor. Als
+Parametrisierung ergeben sich an dieser Stelle die Faktoren
+\begin{align*}
+	a = \input{build/a_präz_2.tex} && b = \input{build/b_präz_2.tex}
+\end{align*}
+sowie $\mu = \input{build/mu_präz_2.tex}$ als resultierendes magnetisches Moment der Kugel. Die transparente,
+nahezu parallel verlaufende Regressionsgerade berücksichtigt mit den Koeffizienten
+\begin{align*}
+	a = \input{build/a_präz_1.tex} && b = \input{build/b_präz_1.tex}
+\end{align*}
+alle aufgezeichneten Messdaten. Mit $\mu = \input{build/mu_präz_1.tex}$ wird das passende Ergebnis bemessen.
+Der steilere eingefügte Geradenabschnitt dient zur anschaulichen Bewertung der unterschiedlichen Messansätze
+und wird im nächsten Abschnitt behandelt.
+

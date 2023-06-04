@@ -1,0 +1,64 @@
+% Aufgabe: Messaufgaben auflisten
+% Vorbereitung: Vorbereitungsaufgaben bearbeiten
+% Versuchsaufbau: Verwendete Apparatur, Beschreibung Funktionsweise/Nutzen mit Skizze/Foto
+\section{Durchführung}
+\label{sec:durchführung}
+
+Am Lock-In\hspace{0.1ex}-\hspace{-0.25ex}Verstärker werden zuerst die Signale der Ausgänge des
+Funktionsgenerators (Reference/Oscillator) gemessen. An \scriptsize\textbf{OUT}\normalsize{} lässt sich eine
+Spannung $U_{\! \text{sig}}$ mit variabler Amplitude als Nutzsignal abgreifen. Das Referenzsignal
+$U_{\! \text{ref}}$ wird mit einer konstanten Amplitude \qty{5}{\volt} durch
+\textbf{\small{Phase \scriptsize{OUT}}}\normalsize{} geliefert. Beide Spannungen entsprechen Sinussignalen mit
+identischer Kreisfrequenz $\omega = 2\pi\nu$. Der Vorverstärker sowie der Detektor
+werden auf eine Verstärkung (Gain) von \num{10} kalibriert und gemeinsam mit dem eingebauten
+digitalen Oszilloskop auf Gleichspannung eingestellt. Dadurch lässt
+sich das unerwartete Filtern bestimmter Frequenzen vermeiden.
+
+\subsection{Verifikation der Phasenabhängigkeit}
+
+\begin{figure}[H]
+	\centering
+	\begin{tikzpicture}
+		\input{content/sketch_a.tex}
+	\end{tikzpicture}
+	\vspace{1.23ex}
+	\caption{Schematischer Aufbau eines Lock-In\hspace{0.1ex}-\hspace{-0.25ex}Verstärkers.}
+	\label{fig:lock-in}
+\end{figure}
+
+\enlargethispage{\baselineskip}
+
+Abbildung \ref{fig:lock-in} zeigt das Schaltnetz eines Lock-In\hspace{0.1ex}-\hspace{-0.25ex}Verstärkers
+zusammen mit Signalwegen, die der Farbkodierung in Abbildung \ref{fig:verlauf} folgen. Angesetzt wird eine
+Frequenz von $\nu = \qty{1}{\kilo\hertz}$. Das Nutzsignal $U_{\! \text{sig}}$ hat eine Amplitude von
+\qty{10}{\milli\volt} und ist durch das anfangs phasengleiche Sinussignal $U_{\! \text{ref}}$ moduliert. Der
+Rauschgenerator bleibt zunächst überbrückt. Um die Funktion des im Detektor enthaltenen phasenempfindlichen
+Gleichrichters zu beurteilen, werden die zeitlichen Verläufe des Mischsignals $U_{\! \text{mix}}$ am digitalen
+Oszilloskop unter Variation der relativen Phase als Bildschirmaufnahme mitgeführt. Dabei ist die Anzeige des
+Spannungsmessers vertikal auf \qty{200}{\milli\volt}$\!$/div und horizontal auf \qty{200}{\micro\second}/div
+skaliert. Weiter wird die integrierte Gleichspannung $U_{\! \text{out}}$ für verschiedene Phasenverschiebungen
+nachgehalten. Um eine möglichst geringe Bandbreite der verbleibenden Oberfrequenzen zu garantieren, ist am
+Tiefpass eine vergleichsweise hohe Integrationszeit von $\tau = \qty{3}{\second}$ eingestellt. Im Anschluss
+an diese Messungen nutzt man den Störgenerator, um $U_{\! \text{sig}}$ ein Rauschsignal der Größenordnung
+\qty{10}{\milli\volt} zuzufügen. Das vorherige Vorgehen wird für diesen Fall wiederholt, um im Vergleich die
+Güte der Rauschunterdrückung des Lock-In\hspace{0.1ex}-\hspace{-0.25ex}Verstärkers nachzuweisen.
+
+\subsection{Anwendung zur Rauschunterdrückung}
+
+\begin{figure}[H]
+	\centering
+	\begin{tikzpicture}
+		\input{content/sketch_b.tex}
+	\end{tikzpicture}
+	\vspace{1.23ex}
+	\caption{Schematischer Aufbau einer Photodetektorschaltung.}
+	\label{fig:photo}
+\end{figure}
+
+Wie in Abbildung \ref{fig:photo} gezeigt, ist nun eine Leuchtdiode (LED) verbaut. Sie wird bei
+\qty{10}{\volt} mit einer Frequenz von $\nu = \qty{100}{\hertz}$ moduliert. Ein Photodetektor (PD) registriert
+ihr Lichtsignal. Beide Bauteile sind auf einer Schiene geführt. Durch gegenseitiges Verschieben kann
+der Abstand $r$ zwischen LED und PD variiert werden. Um die abstandsabhängige Intensitätsänderung
+zu messen, muss die bekannte Signalfrequenz der Lichtquelle vom Hintergrundrauschen der Umgebungsbeleuchtung
+getrennt werden. Dazu kommt der Lock-In\hspace{0.1ex}-\hspace{-0.25ex}Verstärker zum Einsatz, indem die Werte
+der Ausgangsspannung $U_{\! \text{out}}$ zu verschiedenen Entfernungen aufgenommen und verarbeitet werden.

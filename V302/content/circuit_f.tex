@@ -1,0 +1,35 @@
+\usetikzlibrary{arrows.meta}
+
+\tikzstyle{every node} = [font = \small]
+
+\ctikzset{bipoles/thickness = 1}
+\ctikzset{bipoles/length = 1cm}
+\ctikzset{american inductors}
+
+\begin{scope}[line width = 1pt]
+	\draw
+		(3,-2.25) to[short, *-] ++(0,-0.75)
+		\pgfextra{\ctikzset{bipoles/length = 1.4cm}}
+		to[short] ++(-3.25,0) to[sV, l=$\symup{U_{\! S}}$] ++(0,6)
+		\pgfextra{\ctikzset{bipoles/length = 1cm}}
+		to[short] ++(3.25,0) to[short, -*] ++(0,-0.75);
+	\draw
+		(3,2.25) to[short] ++(-1.5,0)
+		to[R, l_=\raisebox{-0.25ex}{$2R'$}] ++(0,-2.5)
+		to[R, l_=\raisebox{-0.25ex}{$R'$}] ++(0,-2)
+		to[short] ++(1.5,0);
+	\draw
+		(3,2.25) to[short] ++(1.5,0)
+		to[short] ++(0,-0.4)
+		to[C, l=\raisebox{-0.25ex}{$C$}] ++(0,-0.5)
+		to[R, l=\raisebox{-0.25ex}{$R$}] ++(0,-1.6)
+		to[C, -*, l_=\raisebox{-0.25ex}{$C$}] ++(0,-2);
+	\draw
+		(4.5,-0.25) to[short] ++(1.5,0)
+		to[R, l=\raisebox{-0.25ex}{$R$}] ++(0,-2)
+		to[short] ++(-3,0);
+	\draw
+		(1.5,-0.25) to[short, *-*] ++(1.25,0);
+	\draw
+		(3.25,-0.25) to[short, *-*] ++(1.25,0);
+\end{scope}

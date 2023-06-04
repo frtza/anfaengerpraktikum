@@ -1,0 +1,56 @@
+% Aufgabe: Messaufgaben auflisten
+% Vorbereitung: Vorbereitungsaufgaben bearbeiten
+% Versuchsaufbau: Verwendete Apparatur, Beschreibung Funktionsweise/Nutzen mit Skizze/Foto
+
+\vfill
+
+\section{Aufgabe}
+Zielsetzung dieser Versuchsreihe ist die Untersuchung des Verhaltens eines RC\hspace{0.15ex}-Kreises
+in Abhängigkeit von Zeit, Frequenz und Phase. Speziell soll anhand der beobachteten Beziehungen
+die Zeitkonstante $\tau$ bestimmt werden. Dazu werden entsprechende Messungen durchgeführt und
+aufbauend auf den theoretischen Grundlagen ausgewertet.
+
+\newpage
+
+\section{Durchführung}
+\label{sec:durchführung}
+
+\begin{figure}
+	\centering
+	\vspace{1.23ex}
+	\resizebox{0.93\width}{!}{\begin{tikzpicture}\input{content/circuit.tex}\end{tikzpicture}}
+	\vspace{1.23ex}
+	\caption{Veranschaulichendes Schaltbild des Messaufbaus.}
+	\label{fig:circuit}
+\end{figure}
+
+Zunächst soll der Entladungsvorgang des Kondensators nach \eqref{eqn:entladung_spannung} betrachtet werden.
+Am Funktionsgenerator in Abbildung \ref{fig:circuit} wird dazu ein Rechtecksignal eingestellt. Durch Wahl
+einer ausreichend großen Periode $T \gg \tau$ fällt die Kondensatorspannung am Eingang \mbox{CH\hspace{0.3ex}1}
+gegen Null ab. Auf diesem Weg lässt sich die Messskala kalibrieren. Anschließend wird unter erhöhter Frequenz
+ein Druck des Oszilloskopschirms angefertigt, um aus den vom Verlauf abzulesenden Daten die Zeitkonstante
+$\tau$ zu bestimmen. Im Weiteren erlaubt das Abgreifen einer veränderlichen Sinusspannung, über das
+\mbox{Transmissionsverhalten~\eqref{eqn:transmission} auf} $\tau = RC$ zu schließen. Die Amplitude der
+Kondensatorspannung wird hierbei mit den entsprechenden Frequenzen nachgehalten. Darauf folgend ist die
+Phasenabhängigkeit~\eqref{eqn:phase} zu untersuchen. Es werden Verlauf von Eingangsspannung
+an CH\hspace{0.3ex}2 und Ausgangsspannung an CH\hspace{0.3ex}1 gemeinsam betrachtet, um daraus die
+Verschiebung
+\begin{equation}
+	\varphi = \pfrac{a}{b} \, \qty{360}{\degree}
+\end{equation}
+mit den Größen $a$ und $b$ nach Abbildung \ref{fig:ab} zu erhalten. 
+
+\begin{figure}
+	\centering
+	\vspace{0.615ex}
+	\begin{tikzpicture}
+		\input{content/sketch.tex}
+	\end{tikzpicture}
+	\vspace{1.23ex}
+	\caption{Schematische Darstellung des Oszillographenschirms.}
+	\label{fig:ab}
+\end{figure}
+
+Anhand der so gewonnenen Messwerte wird zur Phase auch eine Polarprojektion des Zusammenhangs
+\eqref{eqn:amplitude_phase} vorgenommen. Zuletzt ist noch die Integralfunktion des
+RC\hspace{0.15ex}-Gliedes qualitativ anhand verschiedener Signaltypen abgebildet.

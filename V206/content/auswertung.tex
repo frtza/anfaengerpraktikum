@@ -1,0 +1,244 @@
+% Messwerte: Alle gemessenen Größen tabellarisch darstellen
+% Auswertung: Berechnung geforderter Ergebnisse mit Schritten/Fehlerformeln/Erläuterung/Grafik (Programme)
+\section{Auswertung}
+\label{sec:auswertung}
+
+Beide Reservoire sind jeweils mit einer Wassermenge von \qty{3}{\liter} gefüllt. Am Versuchsaufbau ist
+außerdem die Wärmekapazität von Kupferschlange und Behälter als
+$m_k c_k = \qty[per-mode=reciprocal]{750}{\joule\per\kelvin}$
+abzulesen. Bei der Aufnahme der Druckmessungen ist zu beachten, dass aufgrund der Apparatur eine Addition
+von genau $\qty{1}{\bar} = \qty{100}{\kilo\pascal}$ als Korrektur \mbox{vorgenommen} wird. \mbox{Nichtlineare}
+Ausgleichsrechnungen werden mit den Bibliotheken NumPy \cite{numpy} und SciPy \cite{scipy}
+unter Python \cite{python} durchgeführt. Zum Erstellen von Grafiken wird \mbox{Matplotlib \cite{matplotlib}
+verwendet.}
+
+\subsection{Approximation der Temperaturverläufe}
+
+\begin{figure}[H]
+	\includegraphics{build/plot_temperature.pdf}
+	\caption{Temperaturverläufe nach Tabelle \ref{tab:data} mit analytischen Näherungskurven.}
+	\label{fig:temp}
+\end{figure}
+
+Entlang der in Abbildung \ref{fig:temp} dargestellten Messungen soll \mbox{eine nichtlineare}
+Regression durchgeführt werden. Dazu wird angenommen, dass die Temperaturverläufe einfachen
+Funktionen der Form
+\begin{align}
+	T = A \, t^2 + B \, t + C && \pfrac{\symup dT \hspace{0.2ex}}{\symup dt} = 2A \, t + B
+	\label{eqn:polyfit}
+\end{align}
+folgen. Da es sich um Polynome handelt, bietet sich dabei die Funktion \verb+numpy.polyfit+ an.
+Diese liefert die Koeffizienten
+\begin{align*}
+	A_1 &= \input{build/A_1.tex} & B_1 &= \input{build/B_1.tex} & C_1 &= \input{build/C_1.tex} \\[1ex]
+	A_2 &= \input{build/A_2.tex} & B_2 &= \input{build/B_2.tex} & C_2 &= \input{build/C_2.tex}
+\end{align*}
+zur minimalen Abweichung zwischen Ausgleichskurve und Messreihe. Auch die Fehler zum Modellverlauf
+lassen sich aus der Kovarianzmatrix direkt als Quadratwurzeln ihrer Diagonalelemente berechnen. Nach
+der Fehlerfortpflanzung~\eqref{eqn:gauss} ergibt sich noch
+\begin{equation}
+	\symup{\Delta} \! \left( \pfrac{\symup dT \hspace{0.2ex}}{\symup dt} \right) = 
+	\sqrt{4 \, t^2 \! \left(\symup{\Delta}A\right)^{2} \! + \left(\symup{\Delta}B\right)^{2}}
+	\label{eqn:diff_err}
+\end{equation}
+als zeitabhängige Abweichung der Differentialquotienten.
+
+\subsection{Güteziffer}
+
+Aus den Gleichungen~\eqref{eqn:therm_5} und~\eqref{eqn:therm_6} ergibt sich der zusammengesetzte Ausdruck
+\begin{equation}
+	\nu_{\text{real}} = \pfrac{\hspace{0.3ex} 1 \hspace{0.3ex}}{\!P\,} \,
+	( m_1 c_w + m_k c_k ) \, \pfrac{\symup dT_1}{\symup dt}
+	\label{eqn:güte}
+\end{equation}
+zur Berechnung der realen Güteziffer. Die spezifische Wärmekapazität von Wasser beträgt
+$c_w = \qty[per-mode=reciprocal]{4.18}{\kilo\joule\per\kilo\gram\per\kelvin}$ \cite{h2_o}
+und liefert dann $m_1 c_w = \qty[per-mode=reciprocal]{12.54}{\kilo\joule\per\kelvin}$
+als einzusetzenden Wert. Mit $m_k c_k = \qty[per-mode=reciprocal]{0.75}{\kilo\joule\per\kelvin}$
+ist so $m_1 c_w + m_k c_k = \qty[per-mode=reciprocal]{13.29}{\kilo\joule\per\kelvin}$ gegeben. Die
+ideale Güteziffer wird nach \eqref{eqn:therm_4a} bestimmt. Um $\nu_{\text{real}}$
+und $\nu_{\text{ideal}}$ zu berechnen, werden die Werte aus Tabelle~\ref{tab:data} herangezogen.
+Die Differentialquotienten \eqref{eqn:polyfit} sind nach \eqref{eqn:diff_err} mit Fehlern behaftet.
+In Tabelle \ref{tab:güte} werden sie in \unit[per-mode=reciprocal]{\milli\kelvin\per\second} zu den
+Zeitpunkten $t$ in \unit{\second} aufgezählt.
+\\
+\begin{table}
+	\centering
+	\caption{Differentialquotienten mit Vergleich von realer und idealer Güteziffer.}
+	\begin{tabular}
+		{S[table-format=4.0]
+		 S[table-format=2.2]
+		 @{${}\pm{}$}
+		 S[table-format=1.2]
+		 S[table-format=1.2]
+		 @{${}\pm{}$}
+		 S[table-format=1.2]
+		 S[table-format=2.2]
+		 c}
+		\toprule
+		{$t$} & \multicolumn{2}{c}{$\symup dT_1/\symup dt$} &
+		\multicolumn{2}{c}{$\nu_{\text{real}}$} & {$\nu_{\text{ideal}}$} &
+		{$\nu_{\text{real}}/\nu_{\text{ideal}}$}\\
+		\midrule
+		 300 & 23.18 & 0.39 & 2.46 & 0.04 & 24.24 & \qty{10.15}{\percent} \\
+		 600 & 19.58 & 0.46 & 2.10 & 0.05 & 12.80 & \qty{16.41}{\percent} \\
+		 900 & 15.99 & 0.56 & 1.85 & 0.06 &  9.30 & \qty{19.89}{\percent} \\
+		1200 & 12.39 & 0.68 & 1.48 & 0.08 &  7.62 & \qty{19.42}{\percent} \\
+		\bottomrule
+	\end{tabular}
+	\label{tab:güte}
+\end{table}
+
+\subsection{Massendurchsatz}
+
+Wie zuvor in \eqref{eqn:güte} können die Beziehungen~\eqref{eqn:therm_7} und~\eqref{eqn:therm_8}
+genutzt werden, um die Formel
+\begin{equation}
+	\pfrac{\symup dm}{\symup dt} =
+	\pfrac{\hspace{0.3ex} 1 \hspace{0.3ex}}{L\,} \,\pfrac{\symup dQ_2}{\symup dt} = 
+	\pfrac{\hspace{0.3ex} 1 \hspace{0.3ex}}{L\,} \,
+	( m_2 c_w + m_k c_k ) \, \pfrac{\symup dT_2}{\symup dt}
+	\label{eqn:masse}
+\end{equation}
+herzuleiten. Um daraus den Massendurchsatz zu berechnen, wird im nachfolgenden Abschnitt die
+lokal konstante Verdampfungsenthalpie $L = \input{build/L.tex}$ bestimmt. Durch Division mit
+der molaren Masse $M = \qty[per-mode=reciprocal]{120.91}{\gram\per\mole}$ \cite{c_cl2_f2} von
+$\ce{CCl2F2}$ ergibt sich $L = \qty[per-mode=reciprocal]{171.00(2.89)}{\joule\per\gram}$. Mit dem
+Faktor $m_2 c_w + m_k c_k = \qty[per-mode=reciprocal]{13.29}{\kilo\joule\per\kelvin}$ lässt sich
+nun $\symup dm/\symup dt$ ermitteln. Die fortgeführte Abweichung von \eqref{eqn:masse} lautet hierbei
+\begin{equation}
+	\symup{\Delta} \! \left( \pfrac{\symup dm}{\symup dt} \right) = 
+	\sqrt{\left(\!\symup{\Delta}\!\left( \pfrac{\symup dT \hspace{0.2ex}}{\symup dt}\right)\!\!\right)
+	^{\!\!\!2} \! L^{-2} + \left(\!\!\left( \pfrac{\symup dT \hspace{0.2ex}}{\symup dt}\right)\!
+	\symup\Delta L \!\right)^{\!\!\!2} \! L^{-4} \:}
+	\label{eqn:masse_err}
+\end{equation}
+und entspricht damit der Rechenvorschrift \eqref{eqn:gauss} nach Gauß. Zusammen mit den passenden
+Differentialquotienten in \unit[per-mode=reciprocal]{\milli\kelvin\per\second} kann der fehlerbehaftete
+Massendurchsatz in \unit[per-mode=reciprocal]{\gram\per\second} für die Zeitpunkte $t$ in \unit{\second}
+aus Tabelle \ref{tab:masse} entnommen werden.
+\begin{table}
+	\centering
+	\caption{Differentialquotienten mit Massendurchsatz.}
+	\begin{tabular}
+		{S[table-format=4.0]
+		 S[table-format=4.2]
+		 @{${}\pm{}$}
+		 S[table-format=1.2]
+		 S[table-format=3.2]
+		 @{${}\pm{}$}
+		 S[table-format=1.2]}
+		\toprule
+		{$t$} & \multicolumn{2}{c}{$\:\:\symup dT_2/\symup dt$} &
+		\multicolumn{2}{c}{$\:\symup dm/\symup dt$} \\
+		\midrule
+		 300 & -18.17 & 0.42 & -1.41 & 0.04 \\
+		 600 & -15.78 & 0.50 & -1.23 & 0.04 \\
+		 900 & -13.40 & 0.61 & -1.04 & 0.05 \\
+		1200 & -11.01 & 0.74 & -0.86 & 0.06 \\
+		\bottomrule
+	\end{tabular}
+	\label{tab:masse}
+\end{table}
+
+\subsection{Verdampfungsenthalpie}
+
+Zur Berechnung der Regressionskurve in Abbildung \ref{fig:dampf} wird das letzte Wertepaar $T_1, p_b$
+aus Tabelle \ref{tab:data} exkludiert, da es nach Ausschalten des Kompressors zu einem instantanen
+Sprung im Druck $p_b$ kommt. Diese Wirkung tritt in der kontinuierlichen Temperaturmessung $T_1$
+erst verzögert auf und verfälscht dadurch die untersuchte Beziehung.
+
+\begin{figure}[H]
+	\includegraphics{build/plot_pressure.pdf}
+	\caption{Dampfdruckkurve für \ce{CCl2F2} mit $T_1, p_b$ als Fit\hspace{0.15ex}-Daten.}
+	\label{fig:dampf}
+\end{figure}
+
+Um die Dampfdruckkurve weit unterhalb der kritischen Temperatur zu beschreiben, wird hier
+in guter Näherung der Ausdruck
+\begin{equation}
+	p = p_0 \exp\!\left( -\pfrac{L}{\symup{R}} \pfrac{\,1\,}{\!T} \right)
+	\label{eqn:fit}
+\end{equation}
+als vereinfachtes Integrationsergebnis aus der Clausius-Clapeyron-Gleichung \cite{wärme} \mbox{verwendet.}
+
+Dabei ist die molare Gaskonstante mit $\symup{R} = \input{build/R.tex}$ \cite{phys_const} angegeben.
+Eine passende nichtlineare Ausgleichsrechnung mittels \verb+scipy.optimize.curve_fit+ liefert
+\begin{align*}
+	p_0 = \input{build/p.tex} && \pfrac{L}{\symup{R}} = \input{build/L_R.tex}
+\end{align*}
+als optimale Parameter zur Minimierung der Fehlerquadrate mit numerisch genäherter
+\mbox{modellspezifischer Standardabweichung.} Daraus ergibt sich die Verdampfungsenthalpie zu
+$L = \input{build/L.tex}$ für das Transportgas \mbox{Dichlordifluormethan \hspace{-0.15ex}($\ce{CCl2F2}$).}
+
+\subsection{Mechanische Kompressorleistung}
+
+Bevor der Ausdruck \eqref{eqn:therm_12} zur Berechnung der mechanischen Leistung $N$ verwendet werden kann,
+wird eine Beziehung für die Dichte $\rho$ gesucht. Mit $m = \rho \hspace{0.2ex} V$ erfolgt dies über
+\begin{equation}
+	pV = \pfrac{p\hspace{0.1ex}m}{\raisebox{0.567ex}{$\! \rho$}} = nRT \iff \pfrac{p}{\rho T\hspace{0.5ex}} =
+	\pfrac{nR}{\raisebox{0.567ex}{$m$}}
+	\label{eqn:idealgas}
+\end{equation}
+als Definition der idealen Gasgleichung. Unter der Annahme, dass $nR$ sowie $m$ erhalten
+bleiben, muss die Gleichheit
+\begin{equation}
+	\pfrac{p_0}{\rho_0 T_0} = \pfrac{p}{\rho T\hspace{0.5ex}}
+	\label{eqn:gleich}
+\end{equation}
+für beliebige Zeitpunkte $t$ erfüllt sein. Damit können schließlich $T_2 = T$ und $p_a = p$ als entsprechende
+veränderliche Messgrößen substituiert werden. Auflösen liefert
+\begin{equation}
+	\rho = \pfrac{\rho_0 T_0 \hspace{0.2ex} p_a}{p_0 T_2}
+	\label{eqn:druck}
+\end{equation}
+für die auftretende Dichte. Der Term wird nun eingesetzt, um aus \eqref{eqn:therm_12} die Vorschrift
+\begin{equation}
+	N = \pfrac{1}{\kappa - 1} \!\left( \! p_b \sqrt[\raisebox{-1.2ex}{$\hspace{-0.4ex}^\kappa$}]
+	{\pfrac{p_a}{\raisebox{0.7ex}{\(p_b\)}}}-p_a \! \right) \!
+	\pfrac{p_0 T_2}{\rho_0 T_0 \hspace{0.2ex} p_a} \, \pfrac{\symup dm}{\symup dt}
+	\label{eqn:leistung}
+\end{equation}
+zu bilden. Mit den Normalgrößen $p_0 = \qty{1}{\bar} = \qty{100}{\kilo\pascal}$ und
+$T_0 = \qty{0}{\celsius} = \qty{273.15}{\kelvin}$ sowie dem stoffspezifischen Literaturwert
+$\rho_0 = \qty[per-mode=reciprocal]{5510}{\gram\per\cubic\meter}$ \cite{pumpe} berechnet sich
+die geforderte Kenngröße anhand der in Tabelle \ref{tab:data} geführten Messdaten. Aus Tabelle
+\ref{tab:leistung} kann dazu die mechanische Leistung $N$ in \unit{\watt} zu verschiedenen Zeiten
+$t$ in \unit{\second} abgelesen werden.
+\\
+\begin{table}
+	\centering
+	\caption{Mechanische Leistung des Kompressors.}
+	\begin{tabular}
+		{S[table-format=3.0]
+		 S[table-format=3.2]
+		 @{${}\pm{}$}
+		 S[table-format=1.2]
+		 S[table-format=2.2]
+		 S[table-format=4.0]
+		 S[table-format=3.2]
+		 @{${}\pm{}$}
+		 S[table-format=1.2]}
+		\toprule
+		{$t$} & \multicolumn{2}{c}{$\: N$} & {} &
+		{$t$} & \multicolumn{2}{c}{$\: N$} \\
+		\midrule
+		 300 & -11.69 & 0.33 &&  900 & -20.50 & 0.99 \\
+		 600 & -17.74 & 0.64 && 1200 & -19.73 & 1.36 \\
+		\bottomrule
+	\end{tabular}
+	\label{tab:leistung}
+\end{table}
+
+\begin{table}
+	\centering
+	\captionsetup{width=1.1125\linewidth}
+	\caption{Messdaten aus Temperatur $T$, Druck $\tilde{p}$, korrigiertem Druck $p$ und Kompressorleistung
+			 $\hspace{-0.1ex}P\hspace{0.1ex}$ zum Zeitpunkt $t$. Zyklische Datenaufnahme
+			 erfolgt beginnend bei $t$ in der Reihenfolge $T_2, \tilde{p}_a, \tilde{p}_b, T_1, P$
+			 über einen Zeitraum von \qty{20(10)}{\second}.}
+	\begin{adjustbox}{center}
+		\input{build/table.tex}
+	\end{adjustbox}
+	\label{tab:data}
+\end{table}

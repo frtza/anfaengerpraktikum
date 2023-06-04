@@ -1,0 +1,138 @@
+% Messwerte: Alle gemessenen Größen tabellarisch darstellen
+% Auswertung: Berechnung geforderter Ergebnisse mit Schritten/Fehlerformeln/Erläuterung/Grafik (Programme)
+\section{Auswertung}
+\label{sec:auswertung}
+
+Im folgenden Abschnitt wird die Fehlerrechnung mithilfe der Bibliothek uncertainties~\cite{uncertainties} unter Python
+\cite{python} automatisiert. Grafische Darstellungen lassen sich mittels Matplotlib~\cite{matplotlib} erstellen, während
+NumPy~\cite{numpy} und SciPy~\cite{scipy} die Regressionsrechnung vereinfachen.
+
+\begin{table}
+	\centering
+	\caption{Messwerte für Durchmesser $d$ und Masse $m$ der Fallkugeln.}
+	\input{build/meas_dim_tab.tex}
+	\label{tab:mes}
+\end{table}
+
+Zunächst werden die in Tabelle \ref{tab:mes} aufgetragenen Messdaten genutzt, um Tabelle \ref{tab:dim} unter Berücksichtigung
+der mit Abweichungen behafteten Ergebnisse zu füllen.
+
+\begin{table}
+	\centering
+	\caption{Gemittelte Ergebnisse mit Standardabweichung für die Durchmesser $d$ und
+			 Masse $m$ sowie die abgeleiteten Größen Volumen $V$ und Dichte $\rho$.}
+	\input{build/calc_dim_tab.tex}
+	\label{tab:dim}
+\end{table}
+
+Ein Vergleich der auf diese Art für die kleine Kugel bestimmten Masse mit dem gegebenen Literaturwert von
+$m_\text{kl} = \input{build/m_kl.tex}$ \cite{viskos} zeigt eine gute Übereinstimmung an.
+
+\subsection{Gerätekonstante}
+
+Tabelle \ref{tab:fal} enthält die Zeiten, welche die beiden Kugeln jeweils benötigen, um eine markierte Fallstrecke
+von $x = \qty{100}{\milli\meter}$ zurückzulegen.
+
+\begin{table}
+	\centering
+	\caption{Fallzeiten der Kugeln bei konstanter Temperatur von $T = \qty{18}{\celsius}$.}
+	\input{build/const_tab.tex}
+	\label{tab:fal}
+\end{table}
+
+Um diese Messungen weiter zu verarbeiten, lassen sich die mittleren Fallzeiten
+\begin{align*}
+	t_\text{kl} = \input{build/t_kl.tex} && t_\text{gr} = \input{build/t_gr.tex}
+\end{align*}
+bestimmen. Die dynamische Viskosität wird so mit den der Literatur entnommenen~Werten
+$K_\text{kl} = \input{build/K_kl.tex}$ \cite{viskos} und
+$\rho_\text{f\hspace{0.15ex}l} = \input{build/rho_fl.tex}$ \cite{kohl_prak_1_dens} zu
+$\eta = \input{build/eta.tex}$ berechnet. Für die große Kugel folgt daraus unter erneuter Verwendung
+von Formel~\eqref{eqn:visk} die Gerätekonstante $K_\text{gr} = \input{build/K_gr.tex}$.
+
+\subsection{Viskositätsverlauf}
+
+Mithilfe der großen Kugel wird nun der Temperaturverlauf der Viskosität untersucht. In Tabelle \ref{tab:tem} sind
+dafür zunächst die entsprechenden Fallzeiten über die Höhe $x$ bei verschiedenen Temperaturwerten nachgehalten.
+
+\begin{table}
+	\centering
+	\captionsetup{width=0.95\linewidth}
+	\caption{Fallzeiten $t$ der großen Kugel unter schrittweiser Erhöhung der Temperatur $T$.}
+	\input{build/var_tab.tex}
+	\label{tab:tem}
+\end{table}
+
+Tabelle \ref{tab:tot} fasst alle weiterhin benötigten Größen zusammen. Die temperaturspezifische
+Dichte~$\rho_\text{f\hspace{0.15ex}l}$ des destillierten Wassers wird als Literaturwert neben der \mbox{darüber
+berechneten} Viskosität eingetragen. Auch die Fallgeschwindigkeit wird so mitgeführt, da diese zur Bestimmung
+der Reynoldsschen Zahl nach \eqref{eqn:reyn} notwendig ist.
+
+\begin{table}
+	\centering
+	\captionsetup{width=0.95\linewidth}
+	\caption{Relevante Werte im Bezug auf die große Kugel. Der Verlauf der Viskosität~$\eta$ zur Temperatur~$T$
+			 wird mit der Dichte~$\rho_\text{f\hspace{0.15ex}l}$ aus \cite{kohl_prak_1_dens} und der Fallzeit~$t$ über
+			 \eqref{eqn:visk} erstellt. Mit der zurückgelegten Distanz $x = \qty{100}{\milli\meter}$ lassen sich
+			 weiter Geschwindigkeit~$v$ und damit Reynoldssche Zahl~$\symit{Re}$ bestimmen.}
+	\input{build/tab.tex}
+	\label{tab:tot}
+\end{table}
+
+\begin{figure}[H]
+	\includegraphics{build/plot_eta.pdf}
+	\captionsetup{width=0.94\linewidth}
+	\caption{Die gemessene Viskosität $\eta$ wird gegen die Temperatur $T$ aufgetragen. Um einen
+			 besseren Vergleich zu ermöglichen, sind einige Literaturwerte nach \cite{kohl_prak_1_prop} sowie
+			 passende Ausgleichskurven eingefügt.}
+	\label{fig:visk}
+\end{figure}
+
+Der Verlauf der Viskosität ist in Abbildung \ref{fig:visk} nachzuvollziehen. Die Modellfunktion
+\begin{equation*}
+	\eta = a + \pfrac{\,b\,}{\hspace{-0.15ex}T\hspace{0.15ex}} + c T + d T^2
+\end{equation*}
+dient hier als Vorlage für die Regression. Die Parameter werden digital mit der Funktion \verb+scipy.optimize.curve_fit+
+ermittelt, wobei sich die Fehler aus den Diagonalelementen der Kovarianzmatrix ergeben. Die Messergebnisse
+sind dann durch die Koeffizienten
+\begin{align*}
+	a &= \input{build/a.tex} & b &= \input{build/b.tex} \\
+	c &= \input{build/c.tex} & d &= \input{build/d.tex} 
+\end{align*}
+optimal angenähert. Um den Ausgleich entlang der Literaturwerte \cite{kohl_prak_1_prop} zu erhalten, werden neun
+Werte für Temperaturen von \qty{10}{\celsius} bis \qty{90}{\celsius} in gleichmäßigen Intervallen verwendet.
+Dies liefert die Parameter
+\begin{align*}
+	a &= \input{build/a_lit.tex} & b &= \input{build/b_lit.tex} \\
+	c &= \input{build/c_lit.tex} & d &= \input{build/d_lit.tex} 
+\end{align*}
+zur Minimierung der Fehlerquadrate.
+
+\subsubsection{Andradesche Gleichung}
+
+\begin{figure}[H]
+	\includegraphics{build/plot_lin.pdf}
+	\captionsetup{width=0.85\linewidth}
+	\caption{Darstellung der Messdaten entlang der linearisierten Andradeschen Gleichung \eqref{eqn:andr_lin_2} als
+			 Ausgleichsgerade.}
+	\label{fig:andr}
+\end{figure}
+
+Um die Vorfaktoren der linearen Regression nach \eqref{eqn:regression} zu erhalten, wird hier die Funktion
+\verb+numpy.polyfit+ eingesetzt. Damit bestimmen sich die Parameter
+\begin{align*}
+	A = \input{build/A.tex} && B = \input{build/B.tex}
+\end{align*}
+aus einem Modell der Form \eqref{eqn:andr_lin_1}.
+
+\subsubsection{Reynoldssche Zahl}
+
+Zuletzt soll an dieser Stelle noch der Strömungstyp anhand der Reynoldsschen Zahl~\eqref{eqn:reyn} überprüft werden.
+Die kleine Kugel fällt bei raumtemperaturäquivalenten \qty{18}{\celsius} mit einer Geschwindigkeit von
+$v = \input{build/v_kl.tex}$ und liefert somit ein Ergebnis von $\symit{Re} = \input{build/Re_kl.tex}$. Für die
+große Kugel können die entsprechenden Werte aus Tabelle \ref{tab:tot} entnommen werden. Da die kritische Reynoldszahl
+im Bereich $\symit{Re}_\text{krit} \hspace{-0.15ex} \approx 2300$ liegt, kann davon ausgegangen werden, dass bei
+diesem Versuch insgesamt nur stabile laminare Strömungen auftreten. Die beobachteten Werte liegen deutlich mehr als
+eine Größenordnung unterhalb solcher Skalen.
+
+\newpage

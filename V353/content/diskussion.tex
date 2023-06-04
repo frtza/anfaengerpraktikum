@@ -1,0 +1,36 @@
+% Diskussion: Resultate mit Fehler/Genauigkeit zusammenstellen, Literaturwerte/Messmethoden/Ursachen vergleichen
+% Literatur: Verwendete Literatur/Grafiken/Werte/Programme
+% Anhang: Kopie der analog eingetragenen Messdaten
+
+\vfill
+
+\section{Diskussion}
+\label{sec:diskussion}
+
+Insgesamt liegen die resultierenden Werte der verschiedenen Verfahren zur Bestimmung der Zeitkonstante
+zwar innerhalb einer Größenordnung, weisen aber dennoch signifikante Abweichungen auf. So liefert die
+Entladungskurve $RC = \input{build/t-U_RC.tex}$ als das kleinste Ergebnis mit dem geringsten Relativfehler
+zum Modell. Dies ist darin begründet, dass anhand des Oszillographenschirms sehr genau Punkte
+abgelesen werden können. Die große Differenz zu den anderen Methoden kann durch einen unbekannten Fehler
+in der Feinskalierung erklärt werden. So liefert eine plausible Abweichung der Skala von nur
+\qty{0.125}{\milli\second} bereits die Grenzen
+$\input{build/t-U_RC_lower.tex} \leq RC \leq \input{build/t-U_RC_upper.tex}$.
+Dagegen erscheint der Amplitudenverlauf robuster, da die Zeitkonstante
+$RC = \input{build/f-U_RC_corr.tex}$ hier nicht durch eine potenziell ungenaue Skalierung der Apparatur
+beeinflusst wird. Als einzige Annahme ist die Näherung $U_0 = \input{build/f-U_0.tex}$ als Messwert bei der
+niedrigsten Frequenz $\nu = \qty{10}{\hertz}$ gegeben. Die Eingangsamplitude am Funktionsgenerator bleibt
+ebenfalls über ein breites Frequenzspektrum stabil. Zuletzt wird durch die
+Abweichung von $RC = \input{build/f-phi_RC_corr.tex}$ aus dem Phasenverlauf klar, dass die Messungen
+stark streuen. Tatsächlich kann für diese Daten insgesamt von einer schlechten Qualität ausgegangen werden, da
+das Verhalten zum Triggern des Oszilloskops nicht konsistent gesetzt wird und es somit zu Sprüngen kommt.
+Diese Fehler werden auch im Polarplot deutlich. Abschließend dient die Betrachtung der integrierten Signale
+noch als Bestätigung der hierzu postulierten Beziehung.
+
+\newpage
+
+$ $
+
+\vfill
+
+Alle theoretischen Grundlagen sind den Versuchsanleitungen \cite{brücke, relax} entnommen. Auch die Schaltkizze
+sowie der schematische Spannungsverlauf sind an darin enthaltene Grafiken angelehnt.

@@ -1,0 +1,50 @@
+% Diskussion: Resultate mit Fehler/Genauigkeit zusammenstellen, Literaturwerte/Messmethoden/Ursachen vergleichen
+% Literatur: Verwendete Literatur/Grafiken/Werte/Programme
+% Anhang: Kopie der analog eingetragenen Messdaten
+\section{Diskussion}
+\label{sec:diskussion}
+
+Negative Trägheitsmomente sind physikalisch nicht möglich. Um diesen somit signifikanten Fehler zu behandeln,
+welcher hier für jeden untersuchten Körper auftritt, wird nach einer plausiblen Fehlerquelle gesucht. Als wahrscheinlichster
+Kandidat fällt der Blick dabei auf die bei der Bestimmung der Gerätekonstanten verwendete Stange. Diese kann durch einen
+Zylinder vernachlässigbarer Dicke mit einer Höhe $h = \input{build/h_stab.tex}$ genähert werden. Für eine Masse
+$m = \input{build/m_stab.tex}$ ergibt sich nach \eqref{eqn:zylinder_senk} der Wert \mbox{$I_{\hspace{-0.15ex}S} =
+(287\hspace{-0.15ex},\hspace{-0.3ex}4 \pm 0,\hspace{-0.3ex}3) \cdot\qty{e-5}{\kilo\gram\meter\squared}$}
+als ihr Beitrag, welcher innerhalb der gleichen Größenordnung wie das zuvor ermittelte Eigenträgheitsmoment
+$I_{\hspace{-0.3ex}D} = \input{build/I_D.tex}$ liegt. Dieser darf daher bei dessen Berechnung nicht ausgelassen werden.
+Unter Beachtung dieser Erkenntnis lässt sich die korrigierte Konstante von gerade einmal
+$I_{\hspace{-0.3ex}D} = \input{build/I_D_korr.tex}$ aufstellen. Wird diese für eine wiederholte Berechnung
+der Trägheitsmomente herangezogen, ergeben sich die Werte
+$I_{\hspace{-0.3ex}H\hspace{-0.15ex}K} = \input{build/I_kgl_exp_korr.tex}$ und
+$I_{\hspace{-0.3ex}H\hspace{-0.15ex}Z} = \input{build/I_zln_exp_korr.tex}$ für die einfachen Holzkörper.
+Der Vergleich mit den zuvor gewonnenen theoretischen Vorhersagen
+$I'_{\hspace{-0.3ex}H\hspace{-0.15ex}K} = \input{build/I_kgl_theo.tex}$ und
+$I'_{\hspace{-0.3ex}H\hspace{-0.15ex}Z} = \input{build/I_zln_theo.tex}$ gibt entsprechende relative Übereinstimmungen
+von $\input{build/rel_kgl.tex}$ und $\input{build/rel_zln.tex}$ zwischen Experiment und Modell an.
+Verbleibende Abweichungen erklären sich durch weitere Einflüsse. So werden etwa die Massen der Halterungen
+vernachlässigt. Da sich diese hauptsächlich auf der Rotationsachse befinden, sollte der resultierende Fehler jedoch minimal
+ausfallen. Generelle Ungenauigkeiten beim Messverfahren sind ebenfalls nicht ausgeschlossen. Bei der Rückstellkraftmessung
+zur Bestimmung der Winkelrichtgröße muss beispielsweise genau senkrecht angesetzt werden, ansonsten kann es zu verfälschten
+Ergebnissen kommen.
+
+
+Die verschiedenen Haltungen der Modellfigur belaufen sich mithilfe dieser Korrektur auf
+$I_1 = \input{build/I_1_exp_korr.tex}$ sowie $I_2 = \input{build/I_2_exp_korr.tex}$ als experimentelle Resultate. Dies
+entspricht etwa $\input{build/rel_1.tex}$ von $I'_1 = \input{build/I_1_theo.tex}$ sowie $\input{build/rel_2.tex}$ von
+$I'_2 = \input{build/I_2_theo.tex}$ als Theoriewerte. In der zweiten Pose decken sich mittlere Vorhersage und Ergebnis
+demnach zu einem sehr hohen Grad. Dagegen liegt das erwartete theoretische Trägheitsmoment für die erste Haltung eine
+volle Größenordnung über dem resultierenden Mittelwert. Erklären lässt sich dieser Umstand mit den breiten Fehlerintervallen
+der Messungen. Diese wiederum begründen sich vor allem darin, dass die Puppe in beiden Posen Trägheitsmomente aufweist, die
+sich im Bereich des Eigenbeitrags $I_{\hspace{-0.3ex}D} = \input{build/I_D_korr.tex}$ der Apparatur befinden. Deren
+Bestimmung wird dadurch deutlich störanfälliger. Abgesehen von den vorherigen Fehlerquellen tragen hier auch noch die
+ungenaue Positionierung der Körperteile sowie die vereinfachte Geometrie zur realen Abweichung bezüglich der
+Theorievorhersage bei.
+
+Zuletzt folgt aus der Modellierung der Figur in der ersten Haltung ein Trägheitsmoment entsprechend
+$\input{build/rel_theo.tex}$ der zweiten Pose. Diese Vorhersage ist erwartet, da die vom Körper weggestreckten Beine im
+zweiten Fall für eine Massenverteilung in weiterer Entfernung zur Drehachse sorgen. Im Experiment beträgt das
+Trägheitsmoment in der ersten nur $\input{build/rel_exp.tex}$ dessen in der zweiten Haltung. Werden die großen
+Fehlerintervalle beachtet, dürfen theoretische und reale Änderung an dieser Stelle aber trotzdem als vergleichbar behandelt
+werden. Sie sind daher wenigstens mit dem Satz von Steiner vereinbar.
+\enlargethispage{\baselineskip}\newpage
+

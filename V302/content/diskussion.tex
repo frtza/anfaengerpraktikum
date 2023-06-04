@@ -1,0 +1,60 @@
+% Diskussion: Resultate mit Fehler/Genauigkeit zusammenstellen, Literaturwerte/Messmethoden/Ursachen vergleichen
+% Literatur: Verwendete Literatur/Grafiken/Werte/Programme
+% Anhang: Kopie der analog eingetragenen Messdaten
+\section{Diskussion}
+\label{sec:diskussion}
+
+\subsection{Ausmessen elektronischer Bauteile}
+
+Für die Messungen von Widerstand, Kapazität und Induktivität ist durch die rein baubedingten Fehler
+allgemein davon auszugehen, dass abgeleitete Ergebnisse eine hohe Genauigkeit aufweisen. Bei der
+Betrachtung der in Abschnitt \ref{sec:auswertung} berechneten Werte fallen jedoch auch einige Ausreißer
+mit vergleichsweise großen Abweichungen auf. Diese lassen sich teilweise durch unbekannte Größen
+der Referenzbauteile begründen. Besonders für Induktivitäten lassen sich innere Verlustwiderstände nie
+ganz vermeiden. Kapazitäten sind davon weniger betroffen. Auch Fluktuationen von Frequenz und Amplitude
+der Generatorspannung können zu schlecht reproduzierbaren Ergebnissen führen. Nicht zu vernachlässigen
+ist außerdem, dass durch menschliches Irrtum etwa bei der Einstellung der Spannungsminima fehlerhafte
+Werte aufgenommen werden können. All diese Faktoren sind für Messgrößen mit größerer statistischer
+Streuung kompensiert, indem mehrere Messungen durchgeführt werden.
+
+Ein gesonderter Vergleich der klassischen Induktionsmessbrücke \hyperref[sec:4.3]{4.3} mit der
+Maxwell-Brücke \hyperref[sec:4.4]{4.4} kann nicht erbracht werden, da das auszumessende Bauteil
+sich nach dem Umbau der Schaltungen nicht mehr abgleichen lässt. Grund dafür ist wahrscheinlich
+ein unerkannter Defekt an der Steckverbindung. Erwartet wird hier ein geringerer Fehler unter der
+Maxwell-Bauweise, da diese statt einer Spule einen Kondensator mit geringerem Wirkwiderstand verwendet.
+
+\subsection{Untersuchung des Frequenzverhaltens}
+
+Die Verarbeitung der Messergebnisse zur Wien-Robinson-Brücke gestaltet sich stark problematisch. Da die
+Werte genau gegensätzlich zur theoretischen Vorhersage laufen, müssen grobe Annahmen getroffen
+werden, um überhaupt eine Analyse zu ermöglichen. Der resultierende Klirrfaktor im Bereich von
+$k = \num{0.6}$ wird damit unerwartet groß. Ein solcher Oberschwingungsanteil von $\qty{60}{\percent}$ kann
+zudem durch die Erkenntnisse aus den bereits erfolgten Messungen ausgeschlossen werden. Es gilt also,
+mögliche signifikante Fehlerquellen zu bestimmen. Als erster Anhaltspunkt werden in der Brückenschaltung
+abweichende Kapazitäten verbaut: Da keine identischen Bauteile zur Verfügung stehen, muss einmal
+$\qty{450}{\nano\farad}$ durch $\qty{420}{\nano\farad}$ ersetzt werden. Diese Ungenauigkeit
+kann aber nur das Minimum der Übertragungsfunktion leicht verschieben und ist damit nicht für
+die Umkehrung der Erwartungswerte verantwortlich. Weiter ist es möglich, dass eine fehlerhafte
+Einstellung am Oszilloskop die Messdaten verfälscht. Da dieses sowohl zur Einstellung der
+Speisepannung auf $\qty{1}{\volt}$ als auch zum Ablesen der Spannungsverhältnisse dient, lassen
+sich durch ungenaues Kalibrieren der Auflösung $\unit{\volt} \! / \symup{div}$ tatsächlich
+stärkere Abweichungen in der Form der Messverteilung erklären. Allerdings sollte es sich auch
+dabei nur um Streckungen und Stauchungen handeln, nicht aber um ein vollständiges Umkehren.
+Für dieses offensichtliche Mängel bleiben noch zwei Ursachen offen: \newline Am Oszillograph kann eine
+Erdung gewählt werden, die den beobachteten Effekt eines gespiegelten Betrags hervorrufen würde.
+Diese Einstellungsänderung müsste aber auch die vorherigen Messungen beeinflussen und ist demnach
+eher unwahrscheinlich. Als letzte Möglichkeit kann ein Fehler im Schaltungsaufbau aufgetreten sein.
+Dann würde womöglich das Bandpass-Glied innerhalb der Wien-Robinson-Brücke ausgemessen, dessen
+Übertragungsfunktion nicht nur gespiegelt ist, sondern auch eine andere Form aufweist. Dass dieses Problem
+in mehrfach unabhängig aufgebauten und geprüften Versuchen wiederholt auftritt, scheint aber ebenfalls
+nicht plausibel. Der Ursprung der verkehrten Messreihe bleibt also zunächst ungeklärt. 
+
+\vfill
+
+Alle Informationen sind aus der Versuchsanleitung \cite{brücke} entnommen. Auch die Schaltbilder
+sind an die darin enthaltenen Grafiken angelehnt.
+
+\vfill
+\vfill
+\vfill
+\vfill

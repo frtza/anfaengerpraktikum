@@ -1,0 +1,272 @@
+% Titel: Ziel des Versuchs
+% Theorie: Physikalische Grundlagen von Versuch/Messverfahren, Gleichungen ohne Herleitung knapp erklären
+\section{Theorie}
+\label{sec:theorie}
+
+
+\subsection{Grundlegendes zur Brückenschaltung}
+
+\begin{figure}
+	\centering
+	\begin{circuitikz}
+		\input{content/circuit_a.tex}
+	\end{circuitikz}
+	\caption{Prinzipielle Brückenschaltung.}
+	\label{fig:bridge}
+\end{figure}
+
+Im Allgemeinen dient eine Brückenschaltung der Untersuchung einer Potentialdifferenz, welche
+jeweils von den Verhältnissen der verbauten Widerstände abhängt. Sie wird als Brückenspannung
+$\symup{U_{Br}}$ bezeichnet. Für ihre Berechnung aus der Speisespannung $\symup{U_{\! S}}$
+werden die Kirchhoffschen Gesetze benötigt.
+
+\subsubsection{Kirchhoffsche Gesetze}
+
+An den Verzweigungen des Schaltkreises können sowohl zufließende Ströme $(I > 0)$ als auch
+abfließende Ströme $(I<0)$ definiert werden. Die \textbf{Knotenregel} besagt dann, dass die Summe
+der ein- und auslaufenden elektrischen Ströme an einem beliebigen Punkt immer gleich Null ist:
+\begin{equation}
+	\sum_k I_k = 0
+	\label{eqn:knoten}
+\end{equation}
+Für die Brückenschaltung in Abbildung \ref{fig:bridge} folgt daraus direkt, dass $I_1 = I_2$ und
+\mbox{$I_3 = I_4$} gelten muss. Weiter besagt die \textbf{Maschenregel}, dass die Summe aller
+Spannungen in einem geschlossenen Unterkreis eines elektrischen Netzwerkes gleich Null ist.
+Per Konvention ist die positive Richtung dabei als rechtsdrehend definiert. Eine bestimmte
+elektromotorische Kraft entspricht demnach der Summe der übrigen Potentiale. Wird der
+Spannungsabfall an einem Widerstand als dessen Produkt mit der Stromstärke geschrieben, ergibt sich:
+\begin{equation}
+	U = \sum_k U_{\! k} = \sum_k I_k R_k
+	\label{eqn:masche}
+\end{equation}
+Damit kann der folgende Ausdruck für die Brückenspannung hergeleitet werden:
+\begin{equation}
+	\symup{U_{\! Br}} =
+	\pfrac{R_2R_3-R_1R_4}{R_3+R_4} \, I_1 =
+	\pfrac{R_2R_3-R_1R_4}{(R_3+R_4)(R_1+R_2)} \, \symup{U_{\! S}}
+	\label{eqn:bridge}
+\end{equation}
+
+\subsubsection{Abgleichbedingung}
+
+Verschwindet diese für beliebige Speisespannungen, wird die entsprechende Schaltung
+abgeglichene Brücke genannt. Anhand von~\eqref{eqn:bridge} lässt sich ablesen, dass dies
+genau dann der Fall ist, wenn die \textbf{Abgleichbedingung} erfüllt ist:
+\begin{equation}
+	R_1R_4 = R_2R_3
+	\label{eqn:abgleich}
+\end{equation}
+Diese Relation erlaubt das Ausmessen eines unbekannten Widerstandes, solange die Werte der
+übrigen Bauteile bekannt sind.
+
+\subsubsection{Komplexe Widerstände}
+
+Um~\eqref{eqn:abgleich} auch auf Kondensatoren und Spulen anwenden zu können, müssen noch
+\textbf{komplexe Widerstände} eingeführt werden. Solche lassen sich allgemein mit der
+imaginären Einheit $i \mkern1mu$ ausdrücken:
+\begin{equation}
+	Z = X + i \mkern1mu Y
+	\label{eqn:komplex}
+\end{equation}
+
+Dabei bezeichnet $X$ den leistungsverbrauchenden Wirkwiderstand. Der Blindwiderstand $Y$
+erzeugt eine zeitliche Phasenverschiebung zwischen Stromstärke und Spannung, ohne dass es
+zur Umwandlung von Energie kommt. \newline Es werden die Widerstandsoperatoren für eine
+Kapazität $C$, eine Induktivität $L$ und einen ohmschen Widerstand $R$ mit der Kreisfrequenz
+$\omega = 2\pi \nu$ angegeben:
+\begin{align}
+	Z_C = \pfrac{1}{i \mkern1mu \omega C} && Z_L = i \mkern1mu \omega L && Z_R = R
+	\label{eqn:operatoren}
+\end{align}
+Durch Einsetzen von $Z$ in~\eqref{eqn:abgleich} ergibt sich $Z_1Z_4 = Z_2Z_3$ als Abgleichbedingung.
+Da für Gleichheit im komplexen Zahlenraum jeweils Real- und Imaginärteil übereinstimmen müssen, lässt
+sich äquivalent formulieren:
+\begin{equation}
+	\begin{aligned}
+		X_1X_4 - Y_1Y_4 &= X_2X_3 - Y_2Y_3 \\
+		X_1Y_4 + X_4Y_1 &= X_2Y_3 + X_3Y_2
+	\end{aligned}
+	\label{eqn:wechsel}
+\end{equation}
+Zum Abgleichen einer Wechselstrombrücke müssen Betrag und Phase verschwinden, woraus sich die beiden
+Bedingungen~\eqref{eqn:wechsel} ergeben. In der Schaltung braucht es dazu immer zwei unabhängige
+Stellglieder.
+
+
+\subsection{Spezielle Brückenschaltungen}
+
+\subsubsection{Wheatstonesche Brücke}
+
+\begin{figure}[H]
+	\centering
+	\begin{circuitikz}
+		\input{content/circuit_b.tex}
+	\end{circuitikz}
+	\caption{Wheatstonesche Brückenschaltung.}
+	\label{fig:wheatstone}
+\end{figure}
+Die Wheatstonesche Brücke enthält nur ohmsche Widerstände und kann daher \mbox{mit Gleich-} oder Wechselstrom
+betrieben werden. Wird ein unbekannter Widerstand $R_x$ wie in Abbildung \ref{fig:wheatstone} eingebaut, ergibt
+sich aus der Abgleichbedingung~\eqref{eqn:abgleich} folgender Ausdruck:
+\begin{equation}
+	R_x = R_2 \textstyle{\pfrac{\vphantom{\int}R_3}{\vphantom{\int}R_4}}
+	\label{eqn:wheatstone}
+\end{equation}
+Da es zur Bestimmung von $R_x$ ausreicht, nur das Verhältnis von $R_3$ und $R_4$ zu variieren, können diese
+beiden Bauteile durch ein Potentiometer ersetzt werden.
+
+\subsubsection{Kapazitätsmessbrücke}
+
+Ein idealer Kondensator ist vollständig durch seine Speicherkapazität beschrieben. In realen Kondensatoren
+treten zusätzlich dielektrische Verluste auf, bei denen elektrische Energie in Wärme umgewandelt wird. Um
+dies bei der Berechnung von Schaltungen zu berücksichtigen, wird im Ersatzschaltbild ein ohmscher Widerstand in
+Reihe mit einem idealen Kondensator identischer Kapazität gesetzt. Der passende Operator lautet dann:
+\begin{equation}
+	Z_{C \, \text{real}} = R + \pfrac{1}{i \mkern1mu \omega C}
+\end{equation}
+\begin{figure}[H]
+	\centering
+	\begin{circuitikz}
+		\input{content/circuit_c.tex}
+	\end{circuitikz}
+	\caption{Brückenschaltung zur Kapazitätsmessung.}
+	\label{fig:kapazität}
+\end{figure}
+Eine Kapazitätsmessbrücke muss wie in Abbildung \ref{fig:kapazität} mit Wechselstrom gespeist werden. Um bei
+der Messung von $C_x$ die Phasenverschiebung des Verlustwiderstandes $R_x$ zu kompensieren, wird zu $C_2$
+noch ein weiterer verstellbarer Widerstand $R_2$ als zweiter Freiheitsgrad benötigt. Nach dem Abgleich
+für Wechselstrombrücken~\eqref{eqn:wechsel} folgt:
+\begin{align}
+	C_x = C_2 \textstyle{\pfrac{\vphantom{\int}R_4}{\vphantom{\int}R_3}} &&
+	R_x = R_2 \textstyle{\pfrac{\vphantom{\int}R_3}{\vphantom{\int}R_4}}
+	\label{eqn:kapazität}
+\end{align}
+
+\subsubsection{Induktivitätsmessbrücke}
+
+Auch eine reale Induktivität wandelt magnetische Feldenergie teilweise in Wärme um. Um also etwa eine Spule
+darzustellen, wird wieder ein ohmscher Widerstand in Reihe mit einer idealen Induktivität geschaltet.
+Ihr Widerstandsoperator kann wie folgt geschrieben werden:
+\begin{equation}
+	Z_{L \, \text{real}} = R + i \mkern1mu \omega L
+\end{equation}
+
+Wie zuvor kann nach dem Aufbau in Abbildung \ref{fig:induktivität} in die bekannte Abgleichbedingung für
+Wechselstrom~\eqref{eqn:wechsel} eingesetzt werden. Lösen dieser Gleichung liefert:
+\begin{align}
+	L_x = L_2 \textstyle{\pfrac{\vphantom{\int}R_3}{\vphantom{\int}R_4}} &&
+	R_x = R_2 \textstyle{\pfrac{\vphantom{\int}R_3}{\vphantom{\int}R_4}}
+	\label{eqn:induktivität}
+\end{align}
+Um verlustbehaftete Bauteile auszumessen, dürfen entsprechende bekannte Komponenten $L_2$ oder $C_2$
+nur möglichst geringe Fehler aufweisen. Für Induktivitäten ist dies besonders bei niedrigen Frequenzen $\nu$
+kaum möglich. Statt einer in Reihe geschalteten Spule bietet es sich daher an, einen parallel geschalteten
+Kondensator zu nutzen, da solche mit deutlich geringeren Verlusten gebaut werden können. Eine Schaltung dieser
+Form heißt Maxwell-Brücke.
+
+\begin{figure}
+	\centering
+	\begin{circuitikz}
+		\input{content/circuit_d.tex}
+	\end{circuitikz}
+	\caption{Brückenschaltung zur Induktivitätsmessung.}
+	\label{fig:induktivität}
+\end{figure}
+
+\subsubsection{Maxwell-Brücke}
+
+\begin{figure}[H]
+	\centering
+	\begin{circuitikz}
+		\input{content/circuit_e.tex}
+	\end{circuitikz}
+	\caption{Maxwell-Brückenschaltung zur Induktivitätsmessung.}
+	\label{fig:maxwell}
+\end{figure}
+Hier müssen $R_3$ und $R_4$ nach Abbildung \ref{fig:maxwell} wieder separat anpassbar sein. Um
+parallel geschaltete Widerstände und Kapazitäten zusammenzufassen, wird die Summe ihrer Kehrwerte
+gebildet. Der komplexe Operator dazu lautet:
+\begin{equation}
+	Z_{RC} = \! \left( \pfrac{1}{R} + i \mkern1mu \omega C \right)^{\! -1}
+\end{equation}
+Zum Abgleich der Schaltung wird dies wieder in~\eqref{eqn:wechsel} eingesetzt und \mbox{anschließend eliminiert:}
+\begin{align}
+	L_x = R_2 R_3 C_4 && R_x = \textstyle{\pfrac{\vphantom{\int}R_2 R_3}{\vphantom{\int}R_4}}
+	\label{eqn:maxwell}
+\end{align}
+
+\subsubsection{Wien-Robinson-Brücke}
+
+\begin{figure}
+	\centering
+	\begin{circuitikz}
+		\input{content/circuit_f.tex}
+	\end{circuitikz}
+	\caption{Frequenzabhängige Wien-Robinson-Brückenschaltung.}
+	\label{fig:wien}
+\end{figure}
+
+Wie in Abbildung \ref{fig:wien} dargestellt, enthält eine Wien-Robinson-Brücke keine verstellbaren
+Widerstände mehr. Der Abgleich dieser Schaltung ist nur durch Einstellen genau einer bestimmten Frequenz
+$\omega_0 = 2\pi \nu_0$ möglich. Durch Zusammenfassen der Bauteile und Einsetzen in den
+Ausdruck~\eqref{eqn:bridge} lässt sich das Verhältnis von Brücken- und Speisespannung als
+Betrag ausdrücken:
+\begin{equation}
+	\left| \symup{\pfrac{U_{\! Br}}{U_{\! S}}} \right|^2 \!\! =
+	\pfrac{\left( \omega^2 R^2 C^2 - 1 \right)^{\! 2}}
+	{9 \Bigl( \! \left( 1 - \omega^2 R^2 C^2 \right)^{\! 2} \! + 9 \omega^2 R^2 C^2 \Bigr)}
+\end{equation}
+Aus dieser Übertragungsfunktion lässt sich ablesen, dass $\symup{U_{\! Br}}$ für den Wert
+$\omega_0 = (RC)^{-1}$ verschwindet. Bei niedrigeren und höheren Frequenzen ist die Schaltung durchlässig.
+Die Wien-Robinson-Brücke entspricht daher einem elektronischen Sperrfilter. Zur weiteren Vereinfachung wird
+noch folgendes Verhältnis eingeführt:
+\begin{align}
+	\Omega = \pfrac{\omega}{\raisebox{0.5ex}{$\omega_0$}} = \pfrac{\nu}{\raisebox{0.5ex}{$\nu_0$}} &&
+	\left| \symup{\pfrac{U_{\! Br}}{U_{\! S}}} \right|^2 \!\! = \pfrac{\, 1 \,}{\raisebox{0.5ex}{$9$}} \,
+	\pfrac{\left( \Omega^2 - 1 \right)^{\! 2}}
+	{\left( 1 - \Omega^2 \right)^{\! 2} \! + 9 \Omega^2}
+	\label{eqn:wien}
+\end{align}
+Ein realer Generator erzeugt keine reine Sinusschwingung. Das Verhältnis der Oberwellen zur Grundwelle
+wird \textbf{Klirrfaktor} $k$ genannt und bemisst die Güte eines Sinusgenerators. Kleinere Faktoren zeigen
+eine entsprechend höhere Qualität an. Mit der Wien-Robinson-Brücke kann durch Einstellen des Generators auf
+die Sperrfrequenz $\nu_0$ \mbox{eine Messung} des Klirrfaktors durchgeführt werden. Die Amplitude der
+Oberschwingung zur Frequenz $(n+1) \, \nu_0$ sei dabei als $U_{\! n} \!$ definiert. Dann gilt:
+\begin{equation}
+	k = \pfrac{\sqrt{\textstyle{\sum\nolimits_{n = 1}^N U_{\! n}^2}}}{U_{\! 0}}
+	\label{eqn:klirr}
+\end{equation}
+
+
+\subsection{Fehlerrechnung}
+\Umathoverbarrule\displaystyle=0.4pt
+\Umathoverbarvgap\displaystyle=1.4pt
+\Umathoverbarrule\textstyle=0.4pt
+\Umathoverbarvgap\textstyle=1.4pt
+Um die Abweichung der Messgrößen zu untersuchen, werden noch einige weitere Formeln benötigt.
+Der Mittelwert $\overline{x}$ berechnet sich nach:
+\begin{equation}
+	\overline{x} = \pfrac{1}{N \,} \sum_{n=1}^N x_n
+	\label{eqn:mittel}
+\end{equation}
+Zur Bestimmung der Standardabweichung $\symup{\Delta}\overline{x}$ wird folgender Ausdruck verwendet:
+\begin{equation}
+	(\symup{\Delta}\overline{x})^2 = \pfrac{1}{N(N-1)} \sum_{n=1}^N (x_n \! - \overline{x})^2
+	\label{eqn:std}
+\end{equation}
+Durch die Gaußsche Fehlerfortpflanzung ist die Abweichung $\symup{\Delta}f$ für aus fehlerbehafteten
+Messwerten $x_n \!$ abgeleitete Größen $f$ berücksichtigt:
+\begin{equation}
+	(\symup{\Delta}f)^2 = \sum_{n=1}^N
+	\left( \! \pfrac{\partial^{\!} f}{\partial x_{\raisebox{0.2ex}{$\scriptstyle{n}$}}} \!
+	\right)^{\!\! 2} \!\! (\symup{\Delta}x_{\raisebox{0.2ex}{$\scriptstyle{n}$}})^2
+	\label{eqn:gauss}
+\end{equation}
+Für Größen der speziellen Formen $f = xyz$ oder $f = xyz^{-1}$ ergibt sich damit der Fehler:
+\begin{equation}
+	\symup{\Delta}f = f \, 
+	\sqrt{\left( \! \pfrac{\symup{\Delta}x}{\raisebox{0.25ex}{$x$}} \! \right)^{\!\! 2} \!\! + \!
+	\left( \! \pfrac{\symup{\Delta}y^{\,}}{\raisebox{1ex}{$y$}} \! \right)^{\!\! 2} \!\! + \!
+	\left( \! \pfrac{\symup{\Delta}z}{\raisebox{0.25ex}{$z$}} \! \right)^{\!\! 2} \, }
+	\label{eqn:speziell}
+\end{equation}

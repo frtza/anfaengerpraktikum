@@ -1,0 +1,61 @@
+% Aufgabe: Messaufgaben auflisten
+% Vorbereitung: Vorbereitungsaufgaben bearbeiten
+% Versuchsaufbau: Verwendete Apparatur, Beschreibung Funktionsweise/Nutzen mit Skizze/Foto
+\section{Aufgabe}
+
+Ziel dieser Versuchsreihe ist es, verschiedene elektronische Bauteile auszumessen. Dazu werden unbekannte
+ohmsche Widerstände, Kapazitäten und Induktivitäten in eine jeweils passende Brückenschaltung eingebaut.
+Weiter soll das frequenzabhängige Verhalten einer Filter-Brücke untersucht und mit ihrer Hilfe der
+Klirrfaktor eines Sinusgenerators bestimmt werden.
+
+
+\section{Durchführung}
+\label{sec:durchführung}
+
+Alle Schaltungen werden mit einer sinusförmigen Wechselspannung gespeist. Um die Komponenten zu
+schonen, wird ihre Amplitude auf $\symup{U_{\! S}} = \qty{1}{\volt}$ beschränkt. Während der Messung
+elektronischer Bauteile ist die Frequenz konstant auf $\nu = \qty{1}{\kilo\hertz}$ festgelegt, da so
+Wirk- und Blindwiderstände im Bereich einer Größenordnung liegen. Dadurch lassen sich unerwünschte
+Streukapazitäten und lange Einschwingvorgänge minimieren. Für Widerstandsverhältnisse und variable
+Widerstände wird ein Drehregler-Potentiometer mit Gesamtwiderstand $R = \qty{1}{\kilo\ohm}$ verbaut.
+Als Messgerät für die Brückenspannung dient ein Kathodenstrahloszillograph. Dieser ist mit
+$\qty{5}{\milli\volt} \! / \symup{div}$ auf die feinste Einstellung kalibriert.
+
+\subsection{Widerstandsmessung}
+
+Zunächst wird eine Wheatstonesche Brücke gemäß Abbildung \ref{fig:wheatstone} aufgebaut. Das Abgleichen
+der Schaltung erfolgt durch Variation des Potentiometers. Anschließend werden die Werte $R_2$ und $R_3$
+notiert. Da für das Widerstandsverhältnis $R_4 = \qty{1}{\kilo\ohm} - \! R_3$ gilt, muss $R_4$ nicht explizit
+nachgehalten werden. Dieses Vorgehen wird für zwei unbekannte Werte mit jeweils drei verschiedenen $R_2$
+wiederholt.
+
+\subsection{Kapazitätsmessung}
+
+Die Kapazitätsmessbrücke folgt im Aufbau dem Schaltplan in Abbildung \ref{fig:kapazität}. Gemessen
+werden zwei unbekannte Kondensatoren und eine $RC$-Kombination. Obwohl bei den Kapazitäten davon auszugehen
+ist, dass sie nur geringe Verlustwiderstände besitzen, wird ein zuvor berechneter ohmscher Widerstand in Reihe
+geschaltet. Damit wird für alle Messungen das verstellbare Kompensationsglied $R_2$ benötigt. Durch abwechselndes
+Anpassen des Verhältnisses $R_3$ zu $R_4$ und von $R_2$ lassen sich Betrag und Phase der Brückenspannung
+minimieren. Nachdem die Werte $C_2$, $R_2$ und $R_3$ notiert sind, wird $C_2$ jeweils einmal ausgetauscht
+und das Verfahren erneut durchgeführt.
+
+\subsection{Induktivitätsmessung}
+
+Es werden verlustbehaftete Induktivitäten gemessen, deren innerer Wirkwiderstand nicht vernachlässigt werden
+kann. Demnach müssen wieder zwei Freiheitsgrade verbaut sein. Zunächst nutzt man einen Aufbau nach Abbildung
+\ref{fig:induktivität}. Durch Variieren von Potentiometer und $R_2$ wird die Schaltung so eingestellt, dass
+die Brückenspannung verschwindet. Die Werte $L_2$, $R_2$ und $R_3$ werden für zwei bekannte $L_2$ notiert.
+
+Nun wird die vorherige Induktivitätsmessbrücke durch eine Maxwell-Brücke ersetzt, deren Aufbau Abbildung
+\ref{fig:maxwell} entnommen werden kann. Es wird ein gleichbleibender Widerstand $R_2$ verbaut, allerdings
+werden $R_3$ und $R_4$ jetzt unabhängig voneinander angepasst. Für die abgeglichene Brücke werden $C_4$,
+$R_3$ und $R_4$ nachgehalten. Die Messung wird für zwei verschiedene $C_4$ wiederholt.
+
+\subsection{Untersuchung frequenzabhängiger Brückenschaltungen}
+
+Eine Wien-Robinson-Brücke wird gemäß Abbildung \ref{fig:wien} aufgebaut. Hierbei ist das Ziel die Analyse des
+Frequenzverhaltens der Brückenspannung. Entsprechend kann die Frequenz nicht mehr konstant bleiben, sondern
+wird von $\qty{20}{\hertz}$ bis $\qty{30}{\kilo\hertz}$ variiert. Dabei werden dreißig Datentupel aus $\nu$ und
+der dabei auftretenden Amplitude $\symup{U_{\! Br}}$ gebildet. Eine gleichbleibende Einstellung der
+Generatorspannung $\symup{U_{\! S}}$ ist Voraussetzung für dieses Vorgehen. Die so aufgenommenen Werte werden
+im Anschluss noch zur Klirrfaktorbestimmung herangezogen.

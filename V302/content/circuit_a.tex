@@ -1,0 +1,37 @@
+\usetikzlibrary{arrows.meta}
+
+\tikzstyle{every node} = [font = \small]
+
+\ctikzset{bipoles/thickness = 1}
+\ctikzset{bipoles/length = 1cm}
+
+\begin{scope}[line width = 1pt]
+	\draw
+		(3,-2.25) to[short, *-] ++(0,-0.75)
+		\pgfextra{\ctikzset{bipoles/length = 1.4cm}}
+		to[short] ++(-3.25,0) to[esource, name = U] ++(0,6)
+		\pgfextra{\ctikzset{bipoles/length = 1cm}}
+		to[short] ++(3.25,0) to[short, -*] ++(0,-0.75);
+	\draw
+		(3,2.25) to[short] ++(-1.5,0)
+		to[R, l_=$R_1$, i>_=$I_1$] ++(0,-2.25)
+		to[R, l_=$R_2$, i_=$I_2$] ++(0,-2.25)
+		to[short] ++(1.5,0);
+	\draw
+		(3,2.25) to[short] ++(1.5,0)
+		to[R, l^=$R_3$, i>^=$I_3$] ++(0,-2.25)
+		to[R, l^=$R_4$, i^=$I_4$] ++(0,-2.25)
+		to[short] ++(-1.5,0);
+	\draw
+		(1.5,0) to[short, *-*] ++(1.25,0);
+	\draw
+		(4.5,0) to[short, *-*] ++(-1.25,0);
+	\draw[-{Triangle[angle = 45:1pt 2]}, shift={(3,1.125)}]
+		(240:0.25cm) arc (240:-70:0.25cm);
+	\draw[-{Triangle[angle = 45:1pt 2]}, shift={(3,-1.125)}]
+		(240:0.25cm) arc (240:-70:0.25cm);
+	\node
+		at (2.977,0.333) {$\symup{U_{\! Br}}$};
+	\node
+		at (-0.25,-0.05) {$\symup{U_{\! S}}$};
+\end{scope}

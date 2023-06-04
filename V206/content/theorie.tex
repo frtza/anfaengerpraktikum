@@ -1,0 +1,210 @@
+% Titel: Ziel des Versuchs
+% Theorie: Physikalische Grundlagen von Versuch/Messverfahren, Gleichungen ohne Herleitung knapp erklären
+\section{Theorie}
+\label{sec:theorie}
+
+Im abgeschlossenen System fließt Wärme immer vom wärmeren zum kälteren Reservoir. Dieser Wärmefluss
+ist jedoch umkehrbar, indem äußere Energie zugeführt wird. Realisieren lässt sich dieser Prozess in
+der Wärmepumpe durch das Aufwenden mechanischer Arbeit.
+
+\begin{figure}
+	\centering
+	\vspace{1.23ex}
+	\begin{tikzpicture}
+		\input{content/sketch.tex}
+	\end{tikzpicture}
+	\vspace{1.23ex}
+	\caption{Schematischer Aufbau einer Wärmepumpe.}
+	\label{fig:pumpe}
+\end{figure}
+
+\subsection{Prinzipielle Funktion der Wärmepumpe}
+
+Die Wärmeübertragung erfolgt hier über die Phasenumwandlungsenergie eines geeigneten Transportmediums.
+Für den gerichteten Fluss dieses Stoffes sorgt der Kompressor. Am Drosselventil entsteht dabei durch
+dessen hohen Strömungswiderstand mit $p_b \! - p_a$ ein Druckgefälle. Die mit einem realen Gas gefüllte
+Apparatur ist nun so konzipiert, dass dieses bei der Temperatur $T_1$ und dem Druck $p_b$ flüssig ist.
+Bei $T_2$ und $p_a$ dagegen wird es gasförmig. Somit kommt es nach Durchströmen des Ventils zur
+Verdampfung. Dieser Vorgang entzieht dem Reservoir $2$ Wärme proportional zur \mbox{Verdampfungsenthalpie
+$L$} und sorgt dabei für ein Abkühlen des Volumens. Anschließend wird das Transportgas am Kompressor
+annähernd adiabatisch komprimiert. Dies sorgt für einen simultanen Anstieg von Temperatur und Druck,
+sodass in Reservoir $1$ ein Kondensationsprozess stattfindet. Die zuvor aufgenommene Wärmeenergie wird
+hier wieder abgegeben, $L$ heißt dabei Kondensationsenthalpie. Es kommt zur Erhitzung des Volumens.
+
+Weiter werden einige Komponenten benötigt, um den normalen Betrieb zu gewährleisten. Eine
+blasenfreie Flüssigkeitszufuhr am Drosselventil ist durch einen vorgebauten Reiniger garantiert.
+Zum Schutz des Kompressors ist außerdem eine Steuerungsvorrichtung für das Ventil notwendig, die
+durch Variation der Durchlässigkeit eine untere Temperaturdifferenz sichert. So wird verhindert,
+dass Flüssigkeitsreste den Kompressor beschädigen. Um eine effektivere Durchmischung des
+Reservoirmediums (Wasser) zu ermöglichen, sind die thermisch isolierten Behälter mit Rührmotoren
+ausgestattet. Zur Messaufnahme der Drücke $p_a, p_b$ sind im Versuch Manometer verbaut. Die Temperaturen
+$T_1, T_2$ lassen sich entsprechend an digitalen Thermometern ablesen. Zuletzt dient ein Leistungsmesser
+in der Schaltung des Kompressors dazu, die elektische Leistungsaufnahme $\hspace{-0.2ex} P \hspace{0.2ex}$
+anzuzeigen. Abbildung \ref{fig:pumpe} erleichtert das Nachvollziehen des Aufbaus einer Wärmepumpe.
+
+\vfill
+
+\subsection{Bestimmung der Kenngrößen einer realen Wärmepumpe}
+
+\subsubsection{Güteziffer}
+
+Die Güteziffer $\nu$ bezeichnet das Verhältnis der verrichteten Arbeit $A_0$ zur transportierten
+Wärmemenge. Der erste Hauptsatz der Thermodynamik verlangt Energieerhaltung. Im idealisierten
+geschlossenen System muss daher immer
+\begin{equation}
+	Q_1 = Q_2 + A_0
+	\label{eqn:therm_1}
+\end{equation}
+gelten, wobei $Q_1$ die abgegebene und $Q_2$ die aufgenommene Wärmemenge beschreibt. Aus dem zweiten
+Hauptsatz der Wärmelehre folgt eine weitere Beziehung. Der Ausdruck
+\begin{equation}
+	\pfrac{Q_1}{T_1} - \pfrac{Q_2}{T_2} = 0
+	\stepcounter{equation}\tag{2a}
+	\label{eqn:therm_2a}
+\end{equation}
+besagt, dass die Summe der reduzierten Wärmemengen verschwindet. Die Gültigkeit der Gleichung
+\eqref{eqn:therm_2a} ist jedoch streng an die Reversibilität der Wärmeübertragung gekoppelt. Demnach müsste
+die über einen Zyklus aufgenommene Energie durch einen umgekehrt laufenden Prozess verlustfrei zurückgewonnen
+werden können. Diese Voraussetzung kann nie technologisch umgesetzt werden. Im irreversiblen Fall
+ist dann nur die Ungleichung
+\begin{equation}
+	\pfrac{Q_1}{T_1} - \pfrac{Q_2}{T_2} > 0
+	\tag{2b}
+	\label{eqn:therm_2b}
+\end{equation}
+erfüllt. Durch Auflösen nach $Q_2$ und Einsetzen in Ausdruck~\eqref{eqn:therm_1} kann die Arbeit als
+\begin{equation}
+	A_0 = Q_1 - \pfrac{T_2}{T_1} Q_1
+	\label{eqn:therm_3}
+\end{equation}
+geschrieben werden. Daraus lässt sich nun die Güteziffer $\smash{\displaystyle{\nu = \pfrac{Q_1}{A_0}}}$
+bestimmen.
+\newpage
+Mithilfe der Temperaturdifferenz $T_1 - T_2$ zwischen den Reservoiren stellt sich die Formel
+\begin{equation}
+	\nu_{\text{ideal}} = \pfrac{T_1}{T_1 - T_2}
+	\stepcounter{equation}\tag{4a}
+	\label{eqn:therm_4a}
+\end{equation}
+zur Beschreibung des idealen Falles~\eqref{eqn:therm_2a} auf, während dem realen Fall
+\eqref{eqn:therm_2b} mit
+\begin{equation}
+	\nu_{\text{real}} < \pfrac{T_1}{T_1 - T_2}
+	\tag{4b}
+	\label{eqn:therm_4b}
+\end{equation}
+eine obere Schranke zugewiesen wird. Anhand der Terme~\eqref{eqn:therm_4a} und~\eqref{eqn:therm_4b} ist zu
+erkennen, dass die Effektivität der Apparatur für geringere Temperaturunterschiede zunimmt. Außerdem wird
+der Vorteil einer Wärmepumpe gegenüber anderen Verfahren deutlich, welche direkt mechanische in thermische
+Energie umwandeln:
+\begin{flalign*}
+	\text{Statt } Q_1 \leq A_0 \text{ ist hier } Q_1 \leq A_0 \, \pfrac{T_1}{T_1 - T_2} \text{ gegeben.} &&
+\end{flalign*}
+Um die Güteziffer $\nu$ auch für reale Ausführungen explizit angeben zu können, wird der zeitliche
+Temperaturverlauf $T_1$ betrachtet. Der Wärmegewinn $Q_1$ lässt sich dann als
+\begin{equation}
+	\pfrac{\symup dQ_1}{\symup dt} = ( m_1 c_w + m_k c_k ) \, \pfrac{\symup dT_1}{\symup dt}
+	\label{eqn:therm_5}
+\end{equation}
+ausdrücken. Mit den Wärmekapazitäten $m_1 c_w$ für die Wassermenge in Reservoir $1$ sowie
+$m_k c_k$ für Kupferschlange und Behälter gibt der Zusammenhang
+\begin{equation}
+	\nu_{\text{real}} = \pfrac{\hspace{0.3ex} 1 \hspace{0.3ex}}{\!P\,} \pfrac{\symup dQ_1}{\symup dt} 
+	\label{eqn:therm_6}
+\end{equation}
+die reale Güteziffer an. Der Quotient $\hspace{-0.2ex} P \hspace{0.2ex}$ entspricht dabei der Leistung
+am Kompressor.
+
+\subsubsection{Massendurchsatz}
+
+Analog zum vorherigen Vorgehen lässt sich mit $m_2c_w$ als Wärmekapazität des Wassers in Reservoir $2$
+aus dem zeitabhängigen Temperaturverlauf $T_2$ die Beziehung
+\begin{equation}
+	\pfrac{\symup dQ_2}{\symup dt} = ( m_2 c_w + m_k c_k ) \, \pfrac{\symup dT_2}{\symup dt}
+	\label{eqn:therm_7}
+\end{equation}
+bestimmen. Die bei der Verdampfung entnommene Wärmemenge $Q_2$ entspricht dem Produkt aus
+Verdampfungsenthalpie $L$ und Stoffmenge $m$, weshalb äquivalent
+\begin{equation}
+	\pfrac{\symup dQ_2}{\symup dt} = L \, \pfrac{\symup dm}{\symup dt}
+	\label{eqn:therm_8}
+\end{equation}
+geschrieben werden kann. Darüber ist dann der Massendurchsatz
+$\smash{\displaystyle{\pfrac{\symup dm}{\symup dt}}}$ definiert.
+
+\subsubsection{Mechanische Kompressorleistung}
+
+Allgemein wird vom Kompressor zum Reduzieren eines Gasvolumens $V_{\!a}$ auf $V_{\!b}$ \mbox{die Arbeit}
+\begin{equation}
+	\resizebox{0.955\width}{!}
+		{$ \displaystyle{
+		A_0 = - \!\! \int_{V_{\!a}}^{V_{\!b}} \!\! p \, \symup dV
+		\label{eqn:therm_9}
+		\: } $}
+\end{equation}
+geleistet. Unter Annahme einer adiabatischen Kompression gibt die Poissongleichung
+\begin{equation}
+	\resizebox{0.955\width}{!}
+		{$ \displaystyle{
+		p_a V_{\!a}^\kappa = p_b V_{\!b}^\kappa = p V^\kappa
+		\label{eqn:therm_10}
+		\: } $}
+\end{equation}
+den Zusammenhang zwischen Druck und Volumen wieder. Mit dem Exponenten $\kappa > 1$ wird das
+Verhältnis der Molwärmen $c_p$ und $c_v$ angegeben. Durch Umstellen nach $p$ und Einsetzen
+in~\eqref{eqn:therm_9} ergibt sich der Ausdruck
+\begin{equation}
+	\resizebox{0.955\width}{!}
+		{$ \displaystyle{
+		A_0 = - \, p_a V_{\!a}^\kappa \!\! \int_{V_{\!a}}^{V_{\!b}} \!\! V^{-\kappa} \, \symup dV =
+		\pfrac{1}{\kappa - 1} \, p_a V_{\! a}^\kappa \left( V_{\!b}^{-\kappa+1}-V_{\!a}^{-\kappa+1}\right) =
+		\pfrac{1}{\kappa - 1} \! \left( \! p_b \sqrt[\raisebox{-1.2ex}{$\hspace{-0.4ex}^\kappa$}]
+		{\pfrac{p_a}{\raisebox{0.7ex}{\(p_b\)}}} - p_a \! \right) \! V_{\!a}
+		\: } $}
+		\label{eqn:therm_11}
+\end{equation}
+für die verrichtete Arbeit. Mit der Beziehung $m = \rho \hspace{0.2ex} V$ folgt daraus schließlich
+\begin{equation}
+	\resizebox{0.955\width}{!}
+		{$ \displaystyle{
+		N = \pfrac{\symup dA_0}{\symup dt} = 
+		\pfrac{1}{\kappa - 1} \! \left( \! p_b \sqrt[\raisebox{-1.2ex}{$\hspace{-0.4ex}^\kappa$}]
+		{\pfrac{p_a}{\raisebox{0.7ex}{\(p_b\)}}}-p_a \! \right) \! \pfrac{\symup dV_{\!a}}{\symup dt} =
+		\pfrac{1}{\kappa - 1} \!\left( \! p_b \sqrt[\raisebox{-1.2ex}{$\hspace{-0.4ex}^\kappa$}]
+		{\pfrac{p_a}{\raisebox{0.7ex}{\(p_b\)}}}-p_a \! \right) \! \rho^{-1} \, \pfrac{\symup dm}{\symup dt}
+		\: } $}
+		\label{eqn:therm_12}
+\end{equation}
+als mechanische Kompressorleistung in Abhängigkeit zum Massendurchsatz~\eqref{eqn:therm_8}.
+
+\vfill
+
+\subsection{Fehlerrechnung}
+Um die Abweichung der Messgrößen zu untersuchen, werden noch einige weitere Formeln benötigt.
+Die Rechenvorschrift für den Mittelwert $\overline{x}$ ist mit
+\begin{equation}
+	\overline{x} = \pfrac{1}{N \,} \sum_{n=1}^N x_n
+	\label{eqn:mittel}
+\end{equation}
+gegeben. Zur Bestimmung der Standardabweichung $\symup{\Delta}\overline{x}$ kann
+\begin{equation}
+	(\symup{\Delta}\overline{x})^2 = \pfrac{1}{N(N-1)} \sum_{n=1}^N (x_n \! - \overline{x})^2
+	\label{eqn:std}
+\end{equation}
+verwendet werden. Durch die Gaußsche Fehlerfortpflanzung
+\begin{equation}
+	(\symup{\Delta}f)^2 = \sum_{n=1}^N
+	\left( \! \pfrac{\partial^{\!} f}{\partial x_{\raisebox{0.2ex}{$\scriptstyle{n}$}}} \!
+	\right)^{\!\! 2} \!\! (\symup{\Delta}x_{\raisebox{0.2ex}{$\scriptstyle{n}$}})^2
+	\label{eqn:gauss}
+\end{equation}
+ist die Abweichung $\symup{\Delta}f$ für von fehlerbehafteten Werten $x_n \!$ abhängige
+Größen $\hspace{-0.2ex} f \hspace{0.2ex}$ definiert.
+
+\newpage
+
+\section{Aufgabe}
+
+Ziel dieses Versuchs ist die Untersuchung der Funktionsweise einer realen Wärmepumpe zum Transport
+thermischer Energie entgegen dem Temperaturgradienten. Dazu wird eine einfache Messreihe an der
+Apparatur aufgenommen und anschließend zur Bestimmung der Kenngrößen ausgewertet.

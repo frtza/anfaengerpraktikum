@@ -1,0 +1,30 @@
+\usetikzlibrary{arrows.meta}
+
+\tikzstyle{every node} = [font = \small]
+
+\ctikzset{bipoles/thickness = 1}
+\ctikzset{bipoles/length = 1cm}
+
+\begin{scope}[line width = 1pt]
+	\draw
+		(3,-2.25) to[short, *-] ++(0,-0.75)
+		\pgfextra{\ctikzset{bipoles/length = 1.4cm}}
+		to[short] ++(-3.25,0) to[esource, name = U] ++(0,6)
+		\pgfextra{\ctikzset{bipoles/length = 1cm}}
+		to[short] ++(3.25,0) to[short, -*] ++(0,-0.75);
+	\draw
+		(3,2.25) to[short] ++(-1.5,0)
+		to[R, l_=$R_x$] ++(0,-2.25)
+		to[R, l_=$R_2$] ++(0,-2.25)
+		to[short] ++(1.5,0);
+	\draw
+		(3,2.25) to[short] ++(1.5,0)
+		to[pR, mirror, name=Pot, l=$\pfrac{\vphantom{\int}R_3}{\vphantom{\int}R_4}$] ++(0,-4.5)
+		to[short] ++(-1.5,0);
+	\draw
+		(1.5,0) to[short, *-*] ++(1.25,0);
+	\draw
+		(3.25,0) to[short, *-] (Pot.wiper);
+	\node
+		at (-0.25,-0.05) {$\symup{U_{\! S}}$};
+\end{scope}
